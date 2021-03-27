@@ -1,0 +1,25 @@
+<!--fadeOutUp-->
+<div [hidden]="!alert['visible']" class="col-xs-11 col-sm-4" [ngClass]="alert['alert_class']"
+     role="alert" style="display: inline-block; margin: 5px auto; position: fixed;
+       transition: all 0.5s ease-in-out; z-index: 99999999999999999031!important; top: 0px; left: 0; right: 0;">
+
+
+  <button type="button" class="close btn-sm white" data-notify="dismiss" (click)="closeAlertNow()"
+          style="position: absolute; right: 10px; top: 50%; margin-top: -9px; z-index: 1033;">
+    <i class="material-icons-custom">close</i></button>
+
+  <i data-notify="icon" class="material-icons-custom" style="font-size: 13px">notifications</i>
+
+  <span data-notify="title" style="font-size: 13px;">{{ alert['title'] | titlecase }}</span>
+
+
+
+
+  <span data-notify="message" [innerHtml]="alert['message'] | titlecase"  style="font-size: 13px;">
+
+  </span>
+
+
+
+
+</div>

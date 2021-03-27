@@ -1,0 +1,94 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row mt-4">
+      <div class="col-lg-8 col-md-8 col-sm-12">
+        <div class="card">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">assignment</i>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="toolbar">
+              List all client types
+            </div>
+            <div class="material-datatables mt-3">
+              <div class="text-center mt-5" *ngIf="loadingTable">
+                <i class="fa fa-spin fa-spinner fa-2x"></i>
+              </div>
+              <div *ngIf="!loadingTable">
+                <table  id="listClientTypes" class="table table-striped table-no-bordered table-hover text-center" cellspacing="0" width="100%" style="width:100%">
+                <thead>
+                <tr class="">
+                  <th width="10%" class="disabled-sorting no-sort font-weight-bold">S/N</th>
+                  <th width="20%" class="font-weight-bold">Name</th>
+                  <th width="55%" class="font-weight-bold">Description</th>
+                  <th class="disabled-sorting text-center no-sort" width="15%"></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                  <th>S/N</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th class="text-center"></th>
+                </tr>
+                </tfoot>
+                <tbody *ngIf="clientTypes.length > 0">
+                <tr *ngFor="let type of clientTypes;index as i">
+                  <td>{{ i + 1}}</td>
+                  <td>{{type?.name}}</td>
+                  <td>{{type?.description}}</td>
+                    <td class="text-center">
+                            <a href="javascript:void(0)" (click)="editType(type)" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i><div class="ripple-container"></div></a>
+                            <a href="javascript:void(0)" (click)="deleteType(type)" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i><div class="ripple-container"></div></a>
+                    </td>
+                </tr>
+                </tbody>
+                <tbody *ngIf="clientTypes.length < 1">
+                <tr ><td colspan="3">No client type available!</td></tr>
+                </tbody>
+              </table>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">people</i>
+            </div>
+          </div>
+          <form novalidate (ngSubmit)="saveClientType()">
+            <div class="card-body">
+            <div class="toolbar">
+             {{createdDisplay.title}}
+            </div>
+            <div class="form-group bmd-form-group mb-3 mt-3">
+              <label for="name" class="">Name *</label>
+              <input type="text" class="form-control" id="name" required name="name" [(ngModel)]="clientType.name" [ngModelOptions]="{standalone: true}">
+              </div>
+
+            <div class="form-group bmd-form-group mb-2">
+              <label for="description" class="">Description </label>
+              <textarea  class="form-control" id="description" name="description" [(ngModel)]="clientType.description" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="category form-category">* Required fields</div>
+          </div>
+          <div class="card-footer ml-auto mr-auto justify-content-center">
+            <button type="submit" class="btn btn-info" [disabled]="!clientType.name || loading">{{createdDisplay?.btnTxt}}
+              <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
+              <div class="ripple-container"></div>
+            </button>
+            &nbsp;<button type="reset" class="btn btn-secondary" (click)="resetForm()">Clear
+              <div class="ripple-container"></div>
+            </button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

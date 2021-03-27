@@ -1,0 +1,94 @@
+<div class="sidebar" data-color="orange" data-background-color="black" data-image="../../assets/images/sidebar-3.jpg">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <!--<a href="javascript:void(0)" class="simple-text logo-mini">
+      <img src="assets/images/upperlinklogo.jpg" width="10">
+    </a>-->
+    <a href="javascript:void(0)" class="simple-text logo-normal" style="padding-left: 24px">
+      <img src="assets/images/upperlink-logo.png" width="150">
+    </a>
+  </div>
+  <div class="sidebar-wrapper"  style="overflow-x: hidden">
+    <div class="user">
+      <div class="photo">
+        <img src="assets/images/upl.png" />
+      </div>
+
+
+      <div class="user-info">
+        <a data-toggle="collapse" href="#userInfo" class="username">
+              <span *ngIf="currentUser">
+                 {{currentUser?.first_name + " " + currentUser?.last_name}}
+                <b class="caret"></b>
+              </span>
+        </a>
+        <div class="collapse" id="userInfo">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)" (click)="openPage('change-password')">
+                <span class="sidebar-mini"> CP </span>
+                <span class="sidebar-normal">Change Password</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="nav" *ngIf="userRole.toLowerCase() === 'admin'">
+      <li class="nav-item active special-class" id="dashboard">
+        <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/dashboard']">
+          <i class="material-icons">dashboard</i>
+          <p> Dashboard </p>
+        </a>
+      </li>
+
+      <li class="nav-item" id="manage-clients">
+        <a class="nav-link" data-toggle="collapse" href="#manageClients" >
+          <i class="material-icons">people</i>
+          <p> Manage Clients
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="manageClients" >
+          <ul class="nav">
+            <li class="nav-item  special-class"  id="manage-users">
+              <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">
+                <span class="sidebar-mini"> AC </span>
+                <span class="sidebar-normal">All Clients</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+
+      <li class="nav-item special-class" id="client-types">
+        <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/client-types']">
+          <i class="material-icons">compare_arrows</i>
+          <p>Client Types</p>
+        </a>
+      </li>
+    </ul>
+
+
+
+
+
+    <ul class="nav" *ngIf="userRole.toLowerCase() === 'client'">
+      <li class="nav-item special-class" id="manage-companies">
+        <a class="nav-link" href="javascript:void(0)" [routerLink]="['/client/manage-documents']">
+          <span class="sidebar-mini"> MD </span>
+          <span class="sidebar-normal">Manage Documents</span>
+        </a>
+      </li>
+
+
+
+    </ul>
+
+  </div>
+</div>

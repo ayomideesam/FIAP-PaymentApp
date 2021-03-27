@@ -1,0 +1,59 @@
+<app-l-header></app-l-header>
+<!-- End Navbar -->
+<div class="wrapper wrapper-full-page">
+  <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../../assets/images/sleeksolutions.jpg'); background-size: cover; background-position: top center;">
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+      <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+          <div class="card card-login card-hidden">
+            <div class="card-header card-header-warning text-center">
+              <h4 class="card-title">Login</h4>
+              <div class="social-line">
+               Login to your account
+              </div>
+            </div>
+            <form novalidate  #loginForm="ngForm" (ngSubmit)="loginProcess()">
+              <div class="card-body">
+                <!--<span class="font-weight-bold red" >{{ errorMessage | titlecase }}</span>-->
+                <div class="bmd-form-group pb-3">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">email</i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Email"
+                           #email="ngModel" minlength="4" id="email"
+                           [(ngModel)]="credentials.email" [ngModelOptions]="{standalone: true}" required>
+                  </div>
+                </div>
+              <div class="bmd-form-group pb-3">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" class="form-control " placeholder="Password" #password="ngModel" minlength="8" id="password"
+                           [(ngModel)]="credentials.password" [ngModelOptions]="{standalone: true}" required>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer justify-content-center">
+              <button type="submit" class="btn btn-warning btn-lg" [disabled]="password.errors || email.errors || loading">
+                <i class="fa fa-spinner fa-spin" *ngIf="loading"></i> &nbsp;LOGIN TO ACCOUNT</button>
+            </div>
+
+              <div class="text-left" style="font-size: 13px;">
+                <p class="px-2"><a href="javascript:void(0)" [routerLink]="['/forgot-password']" class="text-rose">Forgot password?</a></p>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <app-l-footer></app-l-footer>
+    </footer>
+  </div>
+</div>
