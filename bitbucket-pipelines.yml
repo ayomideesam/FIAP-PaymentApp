@@ -1,0 +1,52 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:10.15.3
+
+pipelines:
+  branches:
+    master:
+      - step:
+          size: 2x
+          services:
+            - docker
+          definitions:
+            services:
+              docker:
+                memory: 512  # reduce memory for docker-in-docker from 1GB to 512MB
+          caches:
+            - node
+          script: # Modify the commands below to build your repository.
+          - npm install
+          - npm run production
+          - pipe: atlassian/ftp-deploy:0.3.0
+            variables:
+              USER: $ftp_username
+              PASSWORD: $ftp_password
+              SERVER: $ftp_host
+              REMOTE_PATH: $ftp_remote_path
+              LOCAL_PATH: $ftp_local_path
+              DEBUG: "true"
+              DELETE_FLAG: "false"
+    staging:
+      - step:
+          services:
+            - docker
+          caches:
+            - node
+          script: # Modify the commands below to build your repository.
+          - npm install
+          - npm run staging
+          - pipe: atlassian/ftp-deploy:0.3.0
+            variables:
+              USER: $ftp_username
+              PASSWORD: $ftp_password
+              SERVER: $ftp_host
+              REMOTE_PATH: $ftp_remote_staging_path
+              LOCAL_PATH: $ftp_local_path
+              DEBUG: "true"
+              DELETE_FLAG: "false"
+
+#              EXTRA_ARGS: "--exclude=.htaccess"
