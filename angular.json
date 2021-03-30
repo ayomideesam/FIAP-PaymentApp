@@ -26,7 +26,8 @@
             "assets": [
               "src/favicon.ico",
               "src/upperlinklogo.jpg",
-              "src/assets"
+              "src/assets",
+              "src/.htaccess"
             ],
             "styles": [
               "src/styles.css"
