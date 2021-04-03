@@ -1286,6 +1286,118 @@ pre code {
   margin-left: 91.666667%;
 }
 
+@media screen and (max-width: 1024px) {
+  .navbar-brand img{
+    width: 330px;
+  }
+
+  .ForgotPassClass {
+    margin:12px -70px 7px 5px;
+  }
+
+
+  .btn.btn-lg {
+    font-size: 0.95rem;
+  }
+
+  .text-rose{
+    font-size: 14px;
+  }
+
+  .end {
+    margin-bottom: 18px;
+    max-width: 1035px;
+  }
+
+  .copyright {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 411px) {
+  .navbar-brand img{
+    width: 250px;
+  }
+
+  .ForgotPassClass {
+    margin:12px -70px 7px 5px;
+  }
+
+  .copyright {
+    font-size: 17px;
+  }
+
+  .btn.btn-lg {
+    font-size: 0.95rem;
+  }
+
+  .text-rose{
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .ForgotPassClass {
+    margin: 12px -69px 7px 5px;
+  }
+
+  .end {
+    margin-bottom: 58px;
+  }
+
+  .copyright {
+    font-size: 13px;
+  }
+
+  .text-rose{
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .ForgotPassClass {
+    margin: 12px -50px 7px 5px;
+  }
+  .end {
+    margin-bottom: 58px;
+  }
+
+  .copyright {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navbar-brand img{
+    width: 180px;
+  }
+  .ForgotPassClass {
+    margin:12px -70px 7px 5px !important;
+  }
+  .end {
+    margin-bottom: 80px;
+  }
+
+  .copyright {
+    font-size: 13px;
+  }
+
+  .btn.btn-lg {
+    font-size: 0.75rem;
+  }
+
+  .text-rose{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+
+  .text-rose{
+    font-size: 11px;
+  }
+}
+
 @media (min-width: 576px) {
   .col-sm {
     flex-basis: 0;

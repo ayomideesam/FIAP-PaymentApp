@@ -15,7 +15,7 @@ export class UserService {
   }
 
   auth(data: any): Observable<IResponse> {
-    return this.api.postRequest('auth', 'login' , data).pipe(
+    return this.api.postRequest('authenticate', '' , data).pipe(
       map((res: IResponse) => {
         return res;
       })

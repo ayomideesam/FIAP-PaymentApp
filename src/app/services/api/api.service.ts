@@ -43,7 +43,7 @@ export class ApiService extends RestfulHttpService {
     const data = res.data;
     if (res && res.data) {
       if (auth && auth.match('login')) {
-        sessionStorage.setItem(env.TOKEN, JSON.stringify(data.access_token));
+        sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
         sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.expires_at));
         sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString()));

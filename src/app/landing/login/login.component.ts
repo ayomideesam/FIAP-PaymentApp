@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
       return this.bootstrapService.error('Invalid email address!');
     } else {
       this.loading = true;
-      this.userService.auth(this.credentials).subscribe((response: IResponse) => {
+      /*this.userService.auth(this.credentials).subscribe((response: IResponse) => {
         this.loading = false;
+        console.log(this.credentials);
         this.bootstrapService.success('Authentication successful!');
         const loginType = response.data.user.login_type.split('App\\Models\\')[1];
         this.cacheService.setSession(ENV.ROLE, loginType.toLowerCase());
@@ -44,10 +45,18 @@ export class LoginComponent implements OnInit {
         } else {
           this.navigatorService.navigateUrl('/client/manage-documents');
         }
-      }, error => {
+      }, */
+      this.userService.auth(this.credentials).subscribe((res: any) => {
+          this.loading = false;
+          console.log(this.credentials);
+          console.log("token", res);
+          this.bootstrapService.success('Authentication successful!');
+          this.navigatorService.navigateUrl('/admin/dashboard');
+        },error => {
         this.loading = false;
         console.info('Error after login ', error);
-        this.bootstrapService.error(error.msg || 'Invalid login details!');
+        this.bootstrapService.error(error.error.description, error.error.code);
+        // this.bootstrapService.error(error.msg || 'Invalid login details!');
       });
     }
   }

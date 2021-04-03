@@ -45,11 +45,11 @@ export const landingRouting: IRouting = {
 
 export const userRoutes: Routes = [
   {path: '', component: UserRoutesComponent, children: [
-    {path: '', redirectTo: 'manage-documents', pathMatch: 'full', canActivate: [GuardService, RoleServiceClient], data: {roles: 'CLIENT'}},
+    {path: '', redirectTo: 'manage-documents', pathMatch: 'full', canActivate: [], data: {roles: 'CLIENT'}},
     {path: 'manage-documents', component: UserDashboardComponent},
-    {path: 'change-password', component: ChangePasswordComponent, canActivate: [GuardService, RoleServiceClient], data: {roles: 'CLIENT'}},
-  ], canActivate: [GuardService, RoleServiceClient], data: {roles: 'CLIENT'}},
-  {path: '**', component: UserRoutesComponent, canActivate: [GuardService, RoleServiceClient], data: {roles: 'CLIENT'}}
+    {path: 'change-password', component: ChangePasswordComponent, canActivate: [], data: {roles: 'CLIENT'}},
+  ], canActivate: [], data: {roles: 'CLIENT'}},
+  {path: '**', component: UserRoutesComponent, canActivate: [], data: {roles: 'CLIENT'}}
 ];
 
 export const userRouting: IRouting = {
@@ -63,8 +63,8 @@ export const userRouting: IRouting = {
 
 export const adminRoutes: Routes = [
   {path: '', component: AdminRoutesComponent, children: [
-    {path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
-    {path: 'dashboard', component: AdminDashboardComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
+    {path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [], data: {roles: 'ADMIN'}},
+    {path: 'dashboard', component: AdminDashboardComponent, canActivate: [], data: {roles: 'ADMIN'}},
     {path: 'client-types', component: ClientTypesComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
     {path: 'manage-clients', component: ManageClientsComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
     {path: 'client/:clientId/manage-documents', component: ManageClientDocumentsComponent, canActivate: [GuardService, RoleServiceAdmin],
