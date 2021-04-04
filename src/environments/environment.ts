@@ -7,7 +7,7 @@ export const environment = {
   // API_URL: 'http://uplsv.com.ng/kyc/public/api/v1',
   API_URL: 'http://localhost:2015/api/paychoicedirect',
   API_VERSION: 'v1',
-  /*JWT_KEY: 'oiuytrertyu',
+  JWT_KEY: 'oiuytrertyu',
   TOKEN: 'kyc_upperlink_token_3456789',
   ROLE: 'kyc_upperlink_role_97323456',
   TOKEN_DATE: 'kyc_upperlink_date_97323456',
@@ -16,7 +16,7 @@ export const environment = {
   USERTOKEN: 'kyc_upperlink_user_56789',
   ACTION_KEY: '12384-KYC-UPPERLINK9-2tred;sdfguytr08j-987to890pojrt9-2tred;sdfguytr08j-arokoyuolalekan',
   URL_VALIDATION:  /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
-  EMAIL_VALIDATION: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/*/
+  EMAIL_VALIDATION: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 };
 
