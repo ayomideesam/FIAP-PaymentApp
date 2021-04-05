@@ -1,8 +1,8 @@
 # example netlify.toml
 [build]
-  command = "#paychoicetest build"
+  command = "#ng build --prod"
   functions = "netlify/functions"
-  publish = "dist"
+  publish = "dist/paychoice-portal"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
