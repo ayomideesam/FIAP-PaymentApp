@@ -27,25 +27,25 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.utilService.setFullPageBackgroundImage();
   }
-  public loginProcess() {
-    if (!this.credentials.email || !this.credentials.password) {
-      return this.bootstrapService.error('Email and password is required!');
-    } else if (!this.credentials.email.match(this.EMAIL_VALIDATION)) {
-      return this.bootstrapService.error('Invalid email address!');
-    } else {
-      this.loading = true;
-      /*this.userService.auth(this.credentials).subscribe((response: IResponse) => {
-        this.loading = false;
-        console.log(this.credentials);
-        this.bootstrapService.success('Authentication successful!');
-        const loginType = response.data.user.login_type.split('App\\Models\\')[1];
-        this.cacheService.setSession(ENV.ROLE, loginType.toLowerCase());
-        if (loginType.toLowerCase() === 'admin') {
-          this.navigatorService.navigateUrl('/admin/dashboard');
-        } else {
-          this.navigatorService.navigateUrl('/client/manage-documents');
-        }
-      }, */
+   public loginProcess() {
+     /* if (!this.credentials.email || !this.credentials.password) {
+       return this.bootstrapService.error('Email and password is required!');
+     } else if (!this.credentials.email.match(this.EMAIL_VALIDATION)) {
+       return this.bootstrapService.error('Invalid email address!');
+     } else {
+       this.loading = true;
+       /*this.userService.auth(this.credentials).subscribe((response: IResponse) => {
+         this.loading = false;
+         console.log(this.credentials);
+         this.bootstrapService.success('Authentication successful!');
+         const loginType = response.data.user.login_type.split('App\\Models\\')[1];
+         this.cacheService.setSession(ENV.ROLE, loginType.toLowerCase());
+         if (loginType.toLowerCase() === 'admin') {
+           this.navigatorService.navigateUrl('/admin/dashboard');
+         } else {
+           this.navigatorService.navigateUrl('/client/manage-documents');
+         }
+       }, */
       this.userService.auth(this.credentials).subscribe((res: any) => {
           this.loading = false;
           console.log(this.credentials);
@@ -60,5 +60,5 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-}
+// }
 

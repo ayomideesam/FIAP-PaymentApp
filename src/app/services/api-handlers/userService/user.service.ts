@@ -22,14 +22,14 @@ export class UserService {
     );
   }
   logout(): Observable<IResponse> {
-    return this.api.getRequest('auth', 'logout').pipe(
+    return this.api.getRequest('user', 'logout').pipe(
       map((res: IResponse) => {
         return res;
       })
     );
   }
   forgotPassword(data: any): Observable<IResponse> {
-    return this.api.postRequest('forgot-password', null , data).pipe(
+    return this.api.postRequest('user', 'forgetpassword' , data).pipe(
       map((res: IResponse) => {
         return res;
       })

@@ -38,7 +38,8 @@
         </div>
       </div>
     </div>
-    <ul class="nav" *ngIf="userRole.toLowerCase() === 'admin'">
+    <!--<ul class="nav" *ngIf="userRole.toLowerCase() === 'admin'">-->
+    <ul class="nav">
       <li class="nav-item active special-class" id="dashboard">
         <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/dashboard']">
           <i class="material-icons">dashboard</i>
@@ -78,7 +79,8 @@
 
 
 
-    <ul class="nav" *ngIf="userRole.toLowerCase() === 'client'">
+    <!--<ul class="nav" *ngIf="userRole.toLowerCase() === 'client'">-->
+    <ul class="nav">
       <li class="nav-item special-class" id="manage-companies">
         <a class="nav-link" href="javascript:void(0)" [routerLink]="['/client/manage-documents']">
           <span class="sidebar-mini"> MD </span>

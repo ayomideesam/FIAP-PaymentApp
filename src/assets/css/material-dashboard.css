@@ -1365,6 +1365,10 @@ pre code {
   .copyright {
     font-size: 15px;
   }
+
+  .AdminRoutes {
+    margin-top: 10px;
+  }
 }
 
 @media screen and (max-width: 320px) {

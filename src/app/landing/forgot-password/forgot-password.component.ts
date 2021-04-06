@@ -41,9 +41,10 @@ export class ForgotPasswordComponent implements OnInit {
         this.notificationService.success('Password reset link sent to you at ' + this.credentials.email);
         this.navigatorService.navigateUrl('/');
       }, error => {
-        this.notificationService.error(error.error.message || 'Unable to reset password');
+        // this.notificationService.error(error.error.message || 'Unable to reset password');
+        this.notificationService.error(error.error.description, error.error.code);
         this.loaders.loading = false;
-        console.info('Error => ', error);
+        console.info('Reset Error => ', error);
       });
     }
   }

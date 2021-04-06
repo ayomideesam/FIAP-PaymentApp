@@ -44,7 +44,8 @@
                 </div>
               </div>
               <div class="card-footer justify-content-center">
-                <button type="submit" class="btn btn-warning btn-lg" [disabled]="password.errors || email.errors || loading">
+                <button type="submit" class="btn btn-warning btn-lg">
+                <!--<button type="submit" class="btn btn-warning btn-lg" [disabled]="password.errors || email.errors || loading">-->
                   <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
                   LOGIN TO ACCOUNT
                 </button>
