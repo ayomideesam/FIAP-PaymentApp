@@ -16,7 +16,7 @@ export class CSVService {
   private fileName = 'data.csv';
   private onError = new EventEmitter<Error>();
   private renderer: Renderer2;
-  private waterMark = 'KYC-Upperlink.ng';
+  private waterMark = 'Paychoice-Upperlink.ng';
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
 
