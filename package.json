@@ -2,6 +2,9 @@
   "name": "PayChoice-portal",
   "version": "0.0.1",
   "author": "Iruobe Akhigbe<iruobeakhigbe@gmail.com>",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
