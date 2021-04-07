@@ -32,7 +32,8 @@ export class ManageClientsComponent implements OnInit {
               private bootstrapNotifyService: BootstrapNotifyService) { }
 
   ngOnInit(): void {
-    this.eventService.broadcast('BREADCRUMB', 'Manage Clients');
+    // this.eventService.broadcast('BREADCRUMB', 'Manage Clients');
+    this.eventService.broadcast('BREADCRUMB', 'Manage Users');
     this.getClients();
     this.getClientTypes();
   }
