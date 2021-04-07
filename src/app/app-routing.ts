@@ -43,13 +43,22 @@ export const landingRouting: IRouting = {
 };
 
 
+/*export const userRoutes: Routes = [
+  {path: '', component: UserRoutesComponent, children: [
+    {path: '', redirectTo: 'manage-documents', pathMatch: 'full', canActivate: [GuardService,RoleServiceClient], data: {roles: 'CLIENT'}},
+    {path: 'manage-documents', component: UserDashboardComponent},
+    {path: 'change-password', component: ChangePasswordComponent, canActivate: [GuardService,RoleServiceClient], data: {roles: 'CLIENT'}},
+  ], canActivate: [GuardService, RoleServiceClient], data: {roles: 'CLIENT'}},
+  {path: '**', component: UserRoutesComponent, canActivate: [GuardService, RoleServiceClient], data: {roles: 'CLIENT'}}
+];*/
+
 export const userRoutes: Routes = [
   {path: '', component: UserRoutesComponent, children: [
-    {path: '', redirectTo: 'manage-documents', pathMatch: 'full', canActivate: [], data: {roles: 'CLIENT'}},
+    {path: '', redirectTo: 'manage-documents', pathMatch: 'full'},
     {path: 'manage-documents', component: UserDashboardComponent},
-    {path: 'change-password', component: ChangePasswordComponent, canActivate: [], data: {roles: 'CLIENT'}},
-  ], canActivate: [], data: {roles: 'CLIENT'}},
-  {path: '**', component: UserRoutesComponent, canActivate: [], data: {roles: 'CLIENT'}}
+    {path: 'change-password', component: ChangePasswordComponent},
+  ]},
+  {path: '**', component: UserRoutesComponent}
 ];
 
 export const userRouting: IRouting = {
@@ -58,13 +67,14 @@ export const userRouting: IRouting = {
     UserRoutesComponent,
     UserDashboardComponent],
   entryComponent: [],
-  providers: [RoleServiceClient]
+  // providers: [RoleServiceClient]
+  providers: []
 };
 
-export const adminRoutes: Routes = [
+/*export const adminRoutes: Routes = [
   {path: '', component: AdminRoutesComponent, children: [
-    {path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [], data: {roles: 'ADMIN'}},
-    {path: 'dashboard', component: AdminDashboardComponent, canActivate: [], data: {roles: 'ADMIN'}},
+    {path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
+    {path: 'dashboard', component: AdminDashboardComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
     {path: 'client-types', component: ClientTypesComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
     {path: 'manage-clients', component: ManageClientsComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'}},
     {path: 'client/:clientId/manage-documents', component: ManageClientDocumentsComponent, canActivate: [GuardService, RoleServiceAdmin],
@@ -73,6 +83,20 @@ export const adminRoutes: Routes = [
   ]
   },
   {path: '**', component: AdminRoutesComponent, canActivate: [GuardService, RoleServiceAdmin], data: {roles: 'ADMIN'} }
+];*/
+
+export const adminRoutes: Routes = [
+  {path: '', component: AdminRoutesComponent, children: [
+    {path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [GuardService]},
+    {path: 'dashboard', component: AdminDashboardComponent, canActivate: [GuardService]},
+    {path: 'client-types', component: ClientTypesComponent, canActivate: [GuardService]},
+    {path: 'manage-clients', component: ManageClientsComponent, canActivate: [GuardService]},
+    {path: 'client/:clientId/manage-documents', component: ManageClientDocumentsComponent, canActivate: [GuardService]},
+    {path: 'change-password', component: ChangePasswordComponent, canActivate: [GuardService]},
+    {path: 'manage-documents', component: UserDashboardComponent, canActivate: [GuardService]},
+  ]
+  },
+  {path: '**', component: AdminRoutesComponent, canActivate: [GuardService]}
 ];
 
 export const adminRouting: IRouting = {
@@ -85,6 +109,7 @@ export const adminRouting: IRouting = {
     ManageClientDocumentsComponent
   ],
   entryComponent: [],
-  providers: [RoleServiceAdmin]
+  // providers: [RoleServiceAdmin]
+  providers: []
 };
 

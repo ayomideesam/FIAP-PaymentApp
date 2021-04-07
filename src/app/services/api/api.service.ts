@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestfulHttpService } from './../httpService/service.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -12,6 +12,7 @@ import 'rxjs/add/operator/take';
 import { environment as env } from '../../../environments/environment';
 // import {retryWhen} from "rxjs-compat/operator/retryWhen";
 import { retryWhen, delay, mergeMap, take, catchError, map } from 'rxjs/operators';
+import { retry } from 'rxjs/operators';
 
 // /${env.API_VERSION}
 
@@ -24,10 +25,10 @@ export class ApiService extends RestfulHttpService {
   }
 
   // intercept and format all possible http error.
-  private errorHandler(error: any) {
+  private static errorHandler(error:HttpErrorResponse) {
     try {
-      if (error.error.code === 401 && (error.error.description.includes('Token timeout')
-          || error.error.description.includes('Access denied') || error.error.description.includes('Unauthenticated'))) {
+      if (error.error.code === 401 && (error.error.msg.includes('Token timeout')
+        || error.error.msg.includes('Access denied') || error.error.msg.includes('Unauthenticated'))) {
         sessionStorage.clear();
         localStorage.clear();
         return throwError(error.error || { msg: 'Unknown error occurred' });
@@ -40,14 +41,15 @@ export class ApiService extends RestfulHttpService {
 
   // in case of Login: this will art as an interceptor to store the token return and possible login user data
   private decode(res: any, auth?: string | null) {
-    const data = res.data;
-    if (res && res.data) {
-      if (auth && auth.match('login')) {
-        // sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
+    const data = res;
+    if (res) {
+      console.log('res', res, auth);
+      if (auth && auth.match('authenticate')) {
         sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
-        sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
+        console.log('MyToken', data.accessToken);
+        /*sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
         sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
-        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString()));
+        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString()));*/
       }
       return res;
     } else {
@@ -66,14 +68,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
@@ -91,14 +93,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
@@ -116,14 +118,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
@@ -140,14 +142,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
@@ -165,14 +167,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => this.decode(res, path))
       );
   }

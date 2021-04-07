@@ -24,13 +24,19 @@ export class AuthService {
   }
   public checkLogin(): boolean {
     const token =  this.cacheService.getSession(ENV.TOKEN);
-    const user =  this.cacheService.getSession(ENV.USERTOKEN);
+    console.log('token', token);
+    /*const user =  this.cacheService.getSession(ENV.USERTOKEN);
     const role =  this.cacheService.getSession(ENV.ROLE);
     const createdDate =  this.cacheService.getSession(ENV.DATE_NOW);
     const expiredDate =  this.cacheService.getSession(ENV.TOKEN_DATE);
     if (!token || !user || !role) {
       return false;
     } else if (new Date(createdDate) > new Date(expiredDate)) {
+      return false;
+    } else {
+      return true;
+    }*/
+    if (!token) {
       return false;
     } else {
       return true;

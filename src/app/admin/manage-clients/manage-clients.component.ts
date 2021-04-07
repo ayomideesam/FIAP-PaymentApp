@@ -70,8 +70,8 @@ export class ManageClientsComponent implements OnInit {
     };
     this.updateMode = null;
     this.createdDisplay = {
-      title: 'Create new client',
-      btnTxt: 'Save client'
+      title: 'Create New Client',
+      btnTxt: 'Save Client'
     };
   }
   public editClient(client: any) {

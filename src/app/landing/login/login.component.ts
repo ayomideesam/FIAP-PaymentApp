@@ -48,13 +48,13 @@ export class LoginComponent implements OnInit {
        }, */
       this.userService.auth(this.credentials).subscribe((res: any) => {
           this.loading = false;
-          console.log(this.credentials);
-          console.log("token", res);
+          /*console.log(this.credentials);
+          console.log("AccessToken", res);*/
           this.bootstrapService.success('Authentication successful!');
           this.navigatorService.navigateUrl('/admin/dashboard');
         },error => {
         this.loading = false;
-        console.info('Error after login ', error);
+        console.info('Login Error', error);
         this.bootstrapService.error(error.error.description, error.error.code);
         // this.bootstrapService.error(error.msg || 'Invalid login details!');
       });
