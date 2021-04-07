@@ -24,7 +24,7 @@ export class AuthService {
   }
   public checkLogin(): boolean {
     const token =  this.cacheService.getSession(ENV.TOKEN);
-    console.log('token', token);
+    console.log('Login Token', token);
     /*const user =  this.cacheService.getSession(ENV.USERTOKEN);
     const role =  this.cacheService.getSession(ENV.ROLE);
     const createdDate =  this.cacheService.getSession(ENV.DATE_NOW);

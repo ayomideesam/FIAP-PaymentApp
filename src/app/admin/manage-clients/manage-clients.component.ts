@@ -48,11 +48,12 @@ export class ManageClientsComponent implements OnInit {
     this.loadingTable  = true;
     // this.userService.getClients().subscribe((res: IResponse) => {
     this.userService.getUsers().subscribe((res: IResponse) => {
+      // this.clients =  res.data.data;
       this.clients =  res.data.data;
       this.loadingTable = false;
       this.utilService.startDatatable('listUsers');
     }, error => {
-      console.log('E ', error);
+      console.log('User Error', error);
       this.bootstrapNotifyService.error(error.error.description, error.error.code);
       this.loadingTable = false;
     });

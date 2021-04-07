@@ -51,8 +51,9 @@
                   </tr>
                   </tfoot>
                   <tbody *ngIf="clients.length > 0">
-                  <tr *ngFor="let client of clients;index as i">
+                  <tr *ngFor="let client of clients; index as i">
                     <td>{{ i + 1}}</td>
+                    <!--<td>{{client?.id}}</td>-->
                     <td>{{client?.id}}</td>
                     <td>{{client?.firstName}}</td>
                     <td>{{client?.lastName}}</td>
@@ -61,8 +62,15 @@
                     <!--<td>{{client?.client_type?.name}}</td>-->
                     <td>{{client?.address}}</td>
                     <td class="text-center">
-                      <a href="javascript:void(0)" (click)="editClient(client)" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i><div class="ripple-container"></div></a>
-                      <a href="javascript:void(0)" (click)="viewDocuments(client)" class="btn btn-link btn-primary"><i class="material-icons">dvr</i>&nbsp;View Documents<div class="ripple-container"></div></a>
+                      <a href="javascript:void(0)" (click)="editClient(client)" class="btn btn-link btn-warning btn-just-icon edit">
+                        <i class="material-icons">edit</i>
+                        <div class="ripple-container"></div>
+                      </a>
+                      <a href="javascript:void(0)" (click)="viewDocuments(client)" class="btn btn-link btn-primary">
+                        <i class="material-icons">dvr</i>&nbsp;
+                          View Documents
+                        <div class="ripple-container"></div>
+                      </a>
                     </td>
                   </tr>
                   </tbody>
