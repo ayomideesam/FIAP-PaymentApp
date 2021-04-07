@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
       'font-weight: bold;' +
       'text-shadow: 1px 1px 5px rgb(249, 162, 34);' +
       'filter: dropshadow(color=rgb(249, 162, 34), offx=1, offy=1);';
-    setTimeout(console.info.bind(console, '%cUpperlink PayChoice Portal', cssRule), 0);
+    setTimeout(console.info.bind(console, '%cUpperlink Fiap Portal', cssRule), 0);
 
   }
 }

@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "paychoice-portal": {
+    "fiap-portal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/paychoice-portal",
+            "outputPath": "dist/fiap-portal",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -79,18 +79,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "paychoice-portal:build"
+            "browserTarget": "fiap-portal:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "paychoice-portal:build:production"
+              "browserTarget": "fiap-portal:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "paychoice-portal:build"
+            "browserTarget": "fiap-portal:build"
           }
         },
         "test": {
@@ -127,16 +127,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "paychoice-portal:serve"
+            "devServerTarget": "fiap-portal:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "paychoice-portal:serve:production"
+              "devServerTarget": "fiap-portal:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "paychoice-portal"
+  "defaultProject": "fiap-portal"
 }
