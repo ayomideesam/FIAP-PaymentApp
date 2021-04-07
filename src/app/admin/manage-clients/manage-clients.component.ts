@@ -17,10 +17,13 @@ export class ManageClientsComponent implements OnInit {
   public clients: any[] = [];
   public clientTypes: any[] = [];
   public client = {
-    first_name: null,
-    last_name: null,
-    client_type_id: null,
-    email: null
+    id: null,
+    firstName: null,
+    lastName: null,
+    email: null,
+    phoneNumber: null,
+    address: null,
+    roleId: null
   };
   private updateMode: any;
   public createdDisplay = {
@@ -34,30 +37,36 @@ export class ManageClientsComponent implements OnInit {
   ngOnInit(): void {
     // this.eventService.broadcast('BREADCRUMB', 'Manage Clients');
     this.eventService.broadcast('BREADCRUMB', 'Manage Users');
-    this.getClients();
+    this.getUsers();
+    // this.getClients();
     this.getClientTypes();
   }
 
 
-  public getClients(): void {
+  // public getClients(): void {
+  public getUsers(): void {
     this.loadingTable  = true;
-    this.userService.getClients().subscribe((res: IResponse) => {
+    // this.userService.getClients().subscribe((res: IResponse) => {
+    this.userService.getUsers().subscribe((res: IResponse) => {
       this.clients =  res.data.data;
       this.loadingTable = false;
-      this.utilService.startDatatable('listClients');
+      this.utilService.startDatatable('listUsers');
     }, error => {
       console.log('E ', error);
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to get clients');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
       this.loadingTable = false;
     });
   }
   public resetForm() {
     this.toggleView();
     this.client = {
-      first_name: null,
-      last_name: null,
-      client_type_id: null,
-      email: null
+      id: null,
+      firstName: null,
+      lastName: null,
+      email: null,
+      phoneNumber: null,
+      address: null,
+      roleId: null
     };
     this.updateMode = null;
     this.createdDisplay = {
@@ -76,14 +85,18 @@ export class ManageClientsComponent implements OnInit {
   public viewDocuments(client: any) {}
 
   public saveClient() {
-    if (!this.client.first_name) {
+    if (!this.client.firstName) {
       return this.bootstrapNotifyService.info('Client first name is required!');
-    } else if (!this.client.last_name) {
+    } else if (!this.client.lastName) {
       return this.bootstrapNotifyService.info('Client last name is required!');
     } else if (!this.client.email) {
       return this.bootstrapNotifyService.info('Client email is required!');
-    } else if (!this.client.client_type_id) {
-      return this.bootstrapNotifyService.info('Client type is required!');
+    } else if (!this.client.phoneNumber) {
+      return this.bootstrapNotifyService.info('Client phone number is required!');
+    } else if (!this.client.address) {
+      return this.bootstrapNotifyService.info('Client address is required!');
+    } else if (!this.client.roleId) {
+      return this.bootstrapNotifyService.info('Client role id is required!');
     } else if (this.updateMode) {
       this.updateClient();
     } else {
@@ -96,10 +109,11 @@ export class ManageClientsComponent implements OnInit {
       this.loading = false;
       this.resetForm();
       this.bootstrapNotifyService.success('Client created!');
-      this.getClients();
+      // this.getClients();
+      this.getUsers();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to create client!');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   private updateClient() {
@@ -109,25 +123,26 @@ export class ManageClientsComponent implements OnInit {
       console.log('Res', res);
       this.bootstrapNotifyService.success('Client updated!');
       this.resetForm();
-      this.getClients();
+      // this.getClients();
+      this.getUsers();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to update client!');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   private getClientTypes() {
     this.userService.getClientTypes().subscribe((res: IResponse) => {
       this.clientTypes =  res.data.data;
     }, error => {
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to list client types');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   public toggleView() {
-    if ($('#viewClients').hasClass('d-none')) {
-      $('#viewClients').removeClass('d-none');
+    if ($('#viewUsers').hasClass('d-none')) {
+      $('#viewUsers').removeClass('d-none');
       this.formPage = false;
     } else {
-      $('#viewClients').addClass('d-none');
+      $('#viewUsers').addClass('d-none');
       this.formPage = true;
     }
   }

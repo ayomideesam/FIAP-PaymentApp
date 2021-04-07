@@ -26,8 +26,8 @@ export class ApiService extends RestfulHttpService {
   // intercept and format all possible http error.
   private errorHandler(error: any) {
     try {
-      if (error.error.code === 401 && (error.error.msg.includes('Token timeout')
-          || error.error.msg.includes('Access denied') || error.error.msg.includes('Unauthenticated'))) {
+      if (error.error.code === 401 && (error.error.description.includes('Token timeout')
+          || error.error.description.includes('Access denied') || error.error.description.includes('Unauthenticated'))) {
         sessionStorage.clear();
         localStorage.clear();
         return throwError(error.error || { msg: 'Unknown error occurred' });
@@ -43,9 +43,10 @@ export class ApiService extends RestfulHttpService {
     const data = res.data;
     if (res && res.data) {
       if (auth && auth.match('login')) {
+        // sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
-        sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.expires_at));
+        sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
         sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString()));
       }
       return res;

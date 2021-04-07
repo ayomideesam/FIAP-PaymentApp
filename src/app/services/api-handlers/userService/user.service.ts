@@ -49,8 +49,43 @@ export class UserService {
       })
     );
   }
+  updateUserPassword(data: any): Observable<IResponse> {
+    return this.api.postRequest('user', 'updatepassword' , data).pipe(
+      map((res: IResponse) => {
+        return res;
+      })
+    );
+  }
+  changeUserPassword(data: any): Observable<IResponse> {
+    return this.api.postRequest('user', 'changepassword' , data).pipe(
+      map((res: IResponse) => {
+        return res;
+      })
+    );
+  }
+  updateUser(data: any): Observable<IResponse> {
+    return this.api.postRequest('user', '' , data).pipe(
+      map((res: IResponse) => {
+        return res;
+      })
+    );
+  }
+  unlockUser(data: any): Observable<IResponse> {
+    return this.api.postRequest('user', 'unlock' , data).pipe(
+      map((res: IResponse) => {
+        return res;
+      })
+    );
+  }
   getClientTypes(): Observable<IResponse> {
     return this.api.getRequest('admin', 'client_type').pipe(
+      map((res: IResponse) => {
+        return res;
+      })
+    );
+  }
+  getUsers(): Observable<IResponse> {
+    return this.api.getRequest('users', '').pipe(
       map((res: IResponse) => {
         return res;
       })
