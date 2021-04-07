@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestfulHttpService } from './../httpService/service.service';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -12,7 +12,6 @@ import 'rxjs/add/operator/take';
 import { environment as env } from '../../../environments/environment';
 // import {retryWhen} from "rxjs-compat/operator/retryWhen";
 import { retryWhen, delay, mergeMap, take, catchError, map } from 'rxjs/operators';
-import { retry } from 'rxjs/operators';
 
 // /${env.API_VERSION}
 
@@ -25,7 +24,7 @@ export class ApiService extends RestfulHttpService {
   }
 
   // intercept and format all possible http error.
-  private static errorHandler(error:HttpErrorResponse) {
+  private errorHandler(error: any) {
     try {
       if (error.error.code === 401 && (error.error.msg.includes('Token timeout')
         || error.error.msg.includes('Access denied') || error.error.msg.includes('Unauthenticated'))) {
@@ -44,12 +43,12 @@ export class ApiService extends RestfulHttpService {
     const data = res;
     if (res) {
       console.log('res', res, auth);
-      if (auth && auth.match('authenticate')) {
+      if (auth && auth.match('login')) {
         sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         console.log('MyToken', data.accessToken);
-        /*sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
+        /* sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
         sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
-        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString()));*/
+        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString())); */
       }
       return res;
     } else {
@@ -68,14 +67,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => ApiService.errorHandler(err)),
+            mergeMap((err) => this.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(ApiService.errorHandler),
+        catchError(this.errorHandler),
         map((res) => {
           return res;
         })
@@ -93,14 +92,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => ApiService.errorHandler(err)),
+            mergeMap((err) => this.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(ApiService.errorHandler),
+        catchError(this.errorHandler),
         map((res) => {
           return res;
         })
@@ -118,14 +117,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => ApiService.errorHandler(err)),
+            mergeMap((err) => this.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(ApiService.errorHandler),
+        catchError(this.errorHandler),
         map((res) => {
           return res;
         })
@@ -142,14 +141,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => ApiService.errorHandler(err)),
+            mergeMap((err) => this.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(ApiService.errorHandler),
+        catchError(this.errorHandler),
         map((res) => {
           return res;
         })
@@ -159,22 +158,26 @@ export class ApiService extends RestfulHttpService {
   // handles all post api request
   public postRequest(api: string, path: null | string, data: any): Observable<any> {
     let ENDPOINT = `${env.API_URL}/${api}`;
-    if (path) {
-      ENDPOINT = `${env.API_URL}/${api}/${path}`;
+
+    if (path && path !== 'login') {
+      ENDPOINT = env.API_URL + '/' + api + '/' + path;
+    } else {
+      ENDPOINT = env.API_URL + '/' + api;
     }
+
     return super
       .post(ENDPOINT, data)
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => ApiService.errorHandler(err)),
+            mergeMap((err) => this.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(ApiService.errorHandler),
+        catchError(this.errorHandler),
         map((res) => this.decode(res, path))
       );
   }

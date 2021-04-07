@@ -4,9 +4,8 @@
  *
  */
 import {Injectable} from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import {HttpClient, HttpHeaders, HttpResponse, HttpParams, HttpErrorResponse} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {HttpClient, HttpHeaders, HttpResponse, HttpParams} from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 
 @Injectable()
@@ -15,7 +14,7 @@ export class RestfulHttpService {
   options: any;
   headersSet: any = {};
   constructor(private http: HttpClient) {
-    // this.token  = env.TOKEN;
+    this.token  = env.TOKEN;
   }
 
   /**
@@ -27,17 +26,13 @@ export class RestfulHttpService {
       const token: string = JSON.parse(sessionStorage.getItem(this.token));
       this.headersSet = new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       });
     } else {
       this.headersSet = new HttpHeaders({
         'Content-Type':  'application/json'
       });
     }
-  }
-
-  private errorHandler(error:HttpErrorResponse) {
-    return throwError(error);
   }
 
   public get(endpoint: string, parameters?: HttpParams): Observable<any> {
@@ -49,31 +44,31 @@ export class RestfulHttpService {
     } else {
       this.options = { headers: this.headersSet };
     }
-    return this.http.get(endpoint, this.options).pipe(catchError(this.errorHandler));
+    return this.http.get(endpoint, this.options);
   }
 
 
   public post(endpoint: string, data: any): Observable<any> {
     this.createAuthorizationHeader();
-    return this.http.post(endpoint, data, {  headers: this.headersSet }).pipe(catchError(this.errorHandler));
+    return this.http.post(endpoint, data, {  headers: this.headersSet });
   }
-
 
 
   public delete(endpoint: string , data: any): Observable<any> {
     this.createAuthorizationHeader();
     const params = new HttpParams(data);
-    return this.http.delete(endpoint, {headers: this.headersSet, params}).pipe(catchError(this.errorHandler));
+    return this.http.delete(endpoint, {headers: this.headersSet, params});
+
   }
 
 
   public put(endpoint: string, data: any): Observable<any> {
     this.createAuthorizationHeader();
-    return this.http.put(endpoint, data, {  headers: this.headersSet }).pipe(catchError(this.errorHandler));
+    return this.http.put(endpoint, data, {  headers: this.headersSet });
   }
 
   public patch(endpoint: string, data: any): Observable<any> {
     this.createAuthorizationHeader();
-    return this.http.patch(endpoint, data, {  headers: this.headersSet }).pipe(catchError(this.errorHandler));
+    return this.http.patch(endpoint, data, {  headers: this.headersSet });
   }
 }
