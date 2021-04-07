@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{Pkuk:function(r,n,e){"use strict";e.r(n),e.d(n,"UserModule",function(){return u});var o=e("nrW+"),s=e("mbAy"),t=e("fXoL");e("gWR6"),e("hxRI");let u=(()=>{class r{}return r.\u0275fac=function(n){return new(n||r)},r.\u0275mod=t.Gb({type:r}),r.\u0275inj=t.Fb({providers:[s.c.providers],imports:[[s.c.routes,o.a]]}),r})()}}]);
