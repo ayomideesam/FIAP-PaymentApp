@@ -29,7 +29,6 @@
                   <thead>
                   <tr class="">
                     <th class="disabled-sorting no-sort font-weight-bold">S/N</th>
-                    <th class="font-weight-bold">User ID</th>
                     <th class="font-weight-bold">First Name</th>
                     <th class="font-weight-bold">Last Name</th>
                     <th class="font-weight-bold">Email</th>
@@ -41,7 +40,6 @@
                   <tfoot>
                   <tr>
                     <th>S/N</th>
-                    <th class="font-weight-bold">User ID</th>
                     <th class="font-weight-bold">First Name</th>
                     <th class="font-weight-bold">Last Name</th>
                     <th class="font-weight-bold">Email</th>
@@ -54,7 +52,6 @@
                   <tr *ngFor="let client of clients; index as i">
                     <td>{{ i + 1}}</td>
                     <!--<td>{{client?.id}}</td>-->
-                    <td>{{client?.id}}</td>
                     <td>{{client?.firstName}}</td>
                     <td>{{client?.lastName}}</td>
                     <td>{{client?.email}}</td>
@@ -118,16 +115,18 @@
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="phoneNumber" class="">Client Phone Number *</label>
-                <input type="text" class="form-control" id="phoneNumber" required
+                <input type="number" class="form-control" id="phoneNumber" required
                        name="phoneNumber" [(ngModel)]="client.phoneNumber" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="address" class="">Client Address *</label>
-                <input type="email" class="form-control" id="address" [readonly]="updateMode" required name="address" [(ngModel)]="client.address" [ngModelOptions]="{standalone: true}">
+                <input type="text" class="form-control" id="address" [readonly]="updateMode" required name="address"
+                       [(ngModel)]="client.address" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
-                <label for="roleId" class="">Client Role Id *</label>
-                <input type="email" class="form-control" id="roleId" [readonly]="updateMode" required name="roleId" [(ngModel)]="client.roleId" [ngModelOptions]="{standalone: true}">
+                <label for="id" class="">Client Role Id *</label>
+                <input type="text" class="form-control" id="id" [readonly]="updateMode" required name="id"
+                       [(ngModel)]="client.id" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <!--<label class="">Client Type *</label>-->
@@ -143,12 +142,11 @@
                 </ng-select>
               </div>
 
-
               <div class="category form-category">* Required fields</div>
             </div>
             <div class="card-footer ml-auto mr-auto justify-content-center">
               <button type="submit" class="btn btn-info"
-                      [disabled]="!client.firstName || !client.lastName || !client.email || !client.phoneNumber  || !client.address || !client.roleId || loading">{{createdDisplay?.btnTxt}}
+                      [disabled]="!client.firstName || !client.lastName || !client.email || !client.phoneNumber  || !client.address || !client.id || loading">{{createdDisplay?.btnTxt}}
                 <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
                 <div class="ripple-container"></div>
               </button>

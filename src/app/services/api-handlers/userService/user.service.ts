@@ -119,8 +119,8 @@ export class UserService {
     );
   }
   updateClient(data: object, id: string): Observable<IResponse> {
-    return this.api.putRequest('admin', 'client/' + id, data).pipe(
-      map((res: IResponse) => {
+    return this.api.putRequest('user', '', data).pipe(
+      map((res: any) => {
         return res;
       })
     );

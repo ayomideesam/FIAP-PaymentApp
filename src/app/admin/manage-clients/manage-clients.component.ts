@@ -21,13 +21,12 @@ export class ManageClientsComponent implements OnInit {
   public clients: any = [];
   public clientTypes: any[] = [];
   public client = {
-    id: null,
     firstName: null,
     lastName: null,
     email: null,
     phoneNumber: null,
     address: null,
-    roleId: null
+    id: null
   };
   private updateMode: any;
   public createdDisplay = {
@@ -71,13 +70,12 @@ export class ManageClientsComponent implements OnInit {
   public resetForm() {
     this.toggleView();
     this.client = {
-      id: null,
       firstName: null,
       lastName: null,
       email: null,
       phoneNumber: null,
       address: null,
-      roleId: null
+      id: null
     };
     this.updateMode = null;
     this.createdDisplay = {
@@ -106,8 +104,8 @@ export class ManageClientsComponent implements OnInit {
       return this.bootstrapNotifyService.info('Client phone number is required!');
     } else if (!this.client.address) {
       return this.bootstrapNotifyService.info('Client address is required!');
-    } else if (!this.client.roleId) {
-      return this.bootstrapNotifyService.info('Client role id is required!');
+    } else if (!this.client.id) {
+      return this.bootstrapNotifyService.info('Client id is required!');
     } else if (this.updateMode) {
       this.updateClient();
     } else {
