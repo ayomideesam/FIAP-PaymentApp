@@ -50,7 +50,7 @@ export class RoleServiceAdmin implements CanActivate {
     // console.log('Roles', roles, state.url);
     return RoleServiceAdmin.checkRole(roles.roles);
   }
-  }
+}
 
 export class RoleServiceClient implements CanActivate {
   static checkRole(roles): boolean {

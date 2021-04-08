@@ -9,6 +9,7 @@ import {HttpClient, HttpHeaders, HttpResponse, HttpParams} from '@angular/common
 import { environment as env } from '../../../environments/environment';
 
 @Injectable()
+
 export class RestfulHttpService {
   token: string;
   options: any;
@@ -26,7 +27,7 @@ export class RestfulHttpService {
       const token: string = JSON.parse(sessionStorage.getItem(this.token));
       this.headersSet = new HttpHeaders({
         'Content-Type':  'application/json',
-        Authorization: `Bearer ${token}`
+        "x-auth-token": `${token}`
       });
     } else {
       this.headersSet = new HttpHeaders({
@@ -35,10 +36,9 @@ export class RestfulHttpService {
     }
   }
 
-  public get(endpoint: string, parameters?: HttpParams): Observable<any> {
+  public get(endpoint: string, data:any, parameters?: HttpParams): Observable<any> {
     // console.info('HEADER::', this.headersSet);
     this.createAuthorizationHeader();
-
     if (parameters) {
       this.options = { params: parameters, headers: this.headersSet };
     } else {

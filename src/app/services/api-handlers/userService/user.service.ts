@@ -16,20 +16,11 @@ export class UserService {
   constructor(private api: ApiService) {
 
   }
-
-  /*auth(data: any): Observable<IResponse> {
-    return this.api.postRequest('authenticate', '' , data).pipe(
-      map((res: IResponse) => {
-        return res;
-      })
-    );
-  }*/
   auth(data: any): Observable<IResponse> {
     return this.api.postRequest('authenticate', 'login' , data).map((res: IResponse)  => {
       return res ;
     });
   }
-
   logout(): Observable<IResponse> {
     return this.api.getRequest('user', 'logout').pipe(
       map((res: IResponse) => {
@@ -94,9 +85,7 @@ export class UserService {
     );
   }
   getUsers(): Observable<IResponse> {
-    // this.createAuthorizationHeader();
-    return this.api.getRequest('users', '').pipe(
-      map((res: IResponse) => {
+    return this.api.getRequest('users', '').pipe( map((res: any) => {
         return res;
       })
     );

@@ -4,6 +4,9 @@ import {IResponse} from '../../interfaces/iresponse';
 import {UserService} from '../../services/api-handlers/userService/user.service';
 import {BootstrapNotifyService} from '../../services/bootstrap-notify/bootstrap-notify.service';
 import {UtilService} from '../../services/utilService/util.service';
+import {Router} from "@angular/router";
+import {environment as ENV} from "../../../environments/environment";
+import {CacheService} from "../../services/cacheService/cache.service";
 
 @Component({
   selector: 'app-manage-clients',
@@ -14,7 +17,8 @@ export class ManageClientsComponent implements OnInit {
   public loadingTable = false;
   public formPage = false;
   public loading = false;
-  public clients: any[] = [];
+  // public clients: any[] = [];
+  public clients: any = [];
   public clientTypes: any[] = [];
   public client = {
     id: null,
@@ -31,25 +35,31 @@ export class ManageClientsComponent implements OnInit {
     btnTxt: 'Save client'
   };
   constructor(private eventService: EventsService, private userService: UserService,
-              private utilService: UtilService,
-              private bootstrapNotifyService: BootstrapNotifyService) { }
+              private utilService: UtilService, private router: Router,
+              private bootstrapNotifyService: BootstrapNotifyService, private cacheService: CacheService) {
+    const token = this.cacheService.getSession(ENV.TOKEN);
+    console.log('this is token', token);
+    if(!token || token === '' ) {
+      console.log('token is here');
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit(): void {
     // this.eventService.broadcast('BREADCRUMB', 'Manage Clients');
     this.eventService.broadcast('BREADCRUMB', 'Manage Users');
     this.getUsers();
     // this.getClients();
-    this.getClientTypes();
+    // this.getClientTypes();
   }
-
-
   // public getClients(): void {
   public getUsers(): void {
     this.loadingTable  = true;
     // this.userService.getClients().subscribe((res: IResponse) => {
-    this.userService.getUsers().subscribe((res: IResponse) => {
+    this.userService.getUsers().subscribe((res: any) => {
       // this.clients =  res.data.data;
-      this.clients =  res.data.data;
+      this.clients =  res.content;
+      console.log('User Response', res);
       this.loadingTable = false;
       this.utilService.startDatatable('listUsers');
     }, error => {

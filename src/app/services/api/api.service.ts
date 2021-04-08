@@ -24,7 +24,7 @@ export class ApiService extends RestfulHttpService {
   }
 
   // intercept and format all possible http error.
-  private errorHandler(error: any) {
+  private static errorHandler(error: any) {
     try {
       if (error.error.code === 401 && (error.error.msg.includes('Token timeout')
         || error.error.msg.includes('Access denied') || error.error.msg.includes('Unauthenticated'))) {
@@ -37,7 +37,6 @@ export class ApiService extends RestfulHttpService {
       return throwError(error || { msg: 'Unknown error occurred' });
     }
   }
-
   // in case of Login: this will art as an interceptor to store the token return and possible login user data
   private decode(res: any, auth?: string | null) {
     const data = res;
@@ -55,7 +54,6 @@ export class ApiService extends RestfulHttpService {
       return res;
     }
   }
-
   // handles all delete api request
   public deleteRequest(api: string, path: string, data?: any): Observable<any> {
     let ENDPOINT = `${env.API_URL}/${api}`;
@@ -67,20 +65,19 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
       );
   }
-
   // handles all update api request
   public putRequest(api: string, path: string, data: any): Observable<any> {
     let ENDPOINT = `${env.API_URL}/${api}`;
@@ -92,20 +89,19 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
       );
   }
-
   // handles all patching api request
   public patchRequest(api: string, path: string | null, data: any): Observable<any> {
     let ENDPOINT = `${env.API_URL}/${api}`;
@@ -117,14 +113,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => {
           return res;
         })
@@ -136,20 +132,15 @@ export class ApiService extends RestfulHttpService {
     if (path) {
       ENDPOINT = `${env.API_URL}/${api}/${path}`;
     }
-    return super
-      .get(ENDPOINT, params)
-      .pipe(
-        retryWhen((errors) => {
-          return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+    return super.get(ENDPOINT, params).pipe(retryWhen((errors) => {
+          // console.log('getRequest1', errors);
+          return errors.pipe(mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
-      )
-      .pipe(
-        catchError(this.errorHandler),
-        map((res) => {
+      ).pipe(catchError(ApiService.errorHandler), map((res) => {
+          // console.log('getRequest2', res);
           return res;
         })
       );
@@ -170,14 +161,14 @@ export class ApiService extends RestfulHttpService {
       .pipe(
         retryWhen((errors) => {
           return errors.pipe(
-            mergeMap((err) => this.errorHandler(err)),
+            mergeMap((err) => ApiService.errorHandler(err)),
             delay(1000),
             take(2)
           );
         })
       )
       .pipe(
-        catchError(this.errorHandler),
+        catchError(ApiService.errorHandler),
         map((res) => this.decode(res, path))
       );
   }

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // API_URL: 'http://uplsv.com.ng/kyc/public/api/v1',
   // API_URL: 'http://192.168.43.25:2015/api/paychoicedirect',
-  API_URL: 'https://034d91ea5f61.ngrok.io/api/paychoicedirect',
+  API_URL: 'http://localhost:2015/api/paychoicedirect',
   API_VERSION: 'v1',
   JWT_KEY: 'oiuytrertyu',
   TOKEN: 'fiap_upperlink_token_3149567',
