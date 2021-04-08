@@ -89,12 +89,6 @@
 
 
 
-
-
-
-
-
-
     <!--Create client-->
     <div class="row mt-4" *ngIf="formPage">
       <div class="col-md-6 col-sm-12 offset-md-3">
@@ -110,16 +104,30 @@
                 {{createdDisplay.title}}
               </div>
               <div class="form-group bmd-form-group mb-3 mt-3">
-                <label for="first_name" class="">First Name *</label>
-                <input type="text" class="form-control" id="first_name" required name="first_name" [(ngModel)]="client.first_name" [ngModelOptions]="{standalone: true}">
+                <label for="firstName" class="">First Name *</label>
+                <input type="text" class="form-control" id="firstName" required name="firstName" [(ngModel)]="client.firstName" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
-                <label for="last_name" class="">Last Name *</label>
-                <input type="text" class="form-control" id="last_name" required name="last_name" [(ngModel)]="client.last_name" [ngModelOptions]="{standalone: true}">
+                <label for="lastName" class="">Last Name *</label>
+                <input type="text" class="form-control" id="lastName" required name="lastName"
+                       [(ngModel)]="client.lastName" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="email" class="">Client Email Address *</label>
                 <input type="email" class="form-control" id="email" [readonly]="updateMode" required name="email" [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="phoneNumber" class="">Client Phone Number *</label>
+                <input type="text" class="form-control" id="phoneNumber" required
+                       name="phoneNumber" [(ngModel)]="client.phoneNumber" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="address" class="">Client Address *</label>
+                <input type="email" class="form-control" id="address" [readonly]="updateMode" required name="address" [(ngModel)]="client.address" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="roleId" class="">Client Role Id *</label>
+                <input type="email" class="form-control" id="roleId" [readonly]="updateMode" required name="roleId" [(ngModel)]="client.roleId" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <!--<label class="">Client Type *</label>-->
@@ -139,7 +147,8 @@
               <div class="category form-category">* Required fields</div>
             </div>
             <div class="card-footer ml-auto mr-auto justify-content-center">
-              <button type="submit" class="btn btn-info" [disabled]="!client.first_name || !client.last_name || !client.email || !client.client_type_id || loading">{{createdDisplay?.btnTxt}}
+              <button type="submit" class="btn btn-info"
+                      [disabled]="!client.firstName || !client.lastName || !client.email || !client.phoneNumber  || !client.address || !client.roleId || loading">{{createdDisplay?.btnTxt}}
                 <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
                 <div class="ripple-container"></div>
               </button>
