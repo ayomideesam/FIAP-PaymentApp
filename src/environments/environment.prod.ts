@@ -11,6 +11,9 @@ export const environment = {
   DATE_NOW: 'fiap_upperlink_date_956323456',
   PRIVATE_KEY: `3FIAP-UPPERLINKgfdertyuhghgfrtyhbdrtyuytfhtrtyuhgghtrdfgytdghtrtre2345678uyfdvcxsaqq5wertyuijbvcxdffdcvgfghyt6t`,
   USERTOKEN: 'fiap_upperlink_user_56789',
+  USERCOUNT: 'user_count_number',
+  AUDITCOUNT: 'audit_count_number',
+  BANKCOUNT: 'bank_count_number',
   ACTION_KEY: '12384-FIAP-UPPERLINK9-2tred;sdfguytr08j-987to890pojrt9-2tred;sdfguytr08j-iruobeakhigbe',
   URL_VALIDATION:  /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
   EMAIL_VALIDATION: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

@@ -78,14 +78,25 @@ export class UserService {
     );
   }
   getClientTypes(): Observable<IResponse> {
-    return this.api.getRequest('admin', 'client_type').pipe(
-      map((res: IResponse) => {
+    return this.api.getRequest('users', '').pipe( map((res: any) => {
         return res;
       })
     );
   }
   getUsers(): Observable<IResponse> {
     return this.api.getRequest('users', '').pipe( map((res: any) => {
+        return res;
+      })
+    );
+  }
+  getAuditLog(): Observable<IResponse> {
+    return this.api.getRequest('auditlog', 'paging').pipe( map((res: any) => {
+        return res;
+      })
+    );
+  }
+  getBanks(): Observable<IResponse> {
+    return this.api.getRequest('banks', '').pipe( map((res: any) => {
         return res;
       })
     );
@@ -111,15 +122,38 @@ export class UserService {
       })
     );
   }
+  createBank(data: object): Observable<IResponse> {
+    return this.api.postRequest('bank', '', data).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
   updateClientType(data: object, id: string): Observable<IResponse> {
+    return this.api.putRequest('user', '', data).pipe(
+      map((res: any) => {
+        console.log('update', res);
+        return res;
+      })
+    );
+  }
+  /*updateClientType(data: object, id: string): Observable<IResponse> {
     return this.api.putRequest('admin', 'client_type/' + id, data).pipe(
       map((res: IResponse) => {
         return res;
       })
     );
-  }
+  }*/
   updateClient(data: object, id: string): Observable<IResponse> {
     return this.api.putRequest('user', '', data).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+  updateBank(data: object, id: string): Observable<IResponse> {
+    return this.api.putRequest('bank', '', data).pipe(
       map((res: any) => {
         return res;
       })

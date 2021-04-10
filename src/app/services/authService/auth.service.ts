@@ -19,12 +19,21 @@ export class AuthService {
   public getUserDetails() {
     return this.cacheService.getSession(ENV.USERTOKEN);
   }
+  public getAllUserDetails() {
+    return this.cacheService.getStorage(ENV.USERCOUNT);
+  }
+  public getAuditCount() {
+    return this.cacheService.getStorage(ENV.AUDITCOUNT);
+  }
+  public getBankCount() {
+    return this.cacheService.getStorage(ENV.BANKCOUNT);
+  }
   public getUserRole() {
     return this.cacheService.getSession(ENV.ROLE);
   }
   public checkLogin(): boolean {
     const token =  this.cacheService.getSession(ENV.TOKEN);
-    console.log('Login Token', token);
+    // console.log('Login Token', token);
     /*const user =  this.cacheService.getSession(ENV.USERTOKEN);
     const role =  this.cacheService.getSession(ENV.ROLE);
     const createdDate =  this.cacheService.getSession(ENV.DATE_NOW);

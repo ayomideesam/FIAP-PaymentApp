@@ -6,18 +6,22 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from './shared/modules/core/core.module';
 import {SharedModule} from './shared/modules/shared/shared.module';
+import {FormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    landingRouting.components
+    landingRouting.components,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     landingRouting.routes,
     CoreModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [landingRouting.providers],
   bootstrap: [AppComponent]

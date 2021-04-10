@@ -14,6 +14,9 @@ import {ChangePasswordComponent} from './shared/components/change-password/chang
 import {ClientTypesComponent} from './admin/client-types/client-types.component';
 import {ManageClientsComponent} from './admin/manage-clients/manage-clients.component';
 import {ManageClientDocumentsComponent} from './admin/manage-client-documents/manage-client-documents.component';
+import {AuditTrailComponent} from "./admin/audit-trail/audit-trail.component";
+import {ManageBanksComponent} from "./admin/manage-banks/manage-banks.component";
+import {ViewBankComponent} from "./admin/manage-banks/view-bank.component";
 
 
 const landingRoutes: Routes = [
@@ -91,6 +94,9 @@ export const adminRoutes: Routes = [
     {path: 'dashboard', component: AdminDashboardComponent, canActivate: [GuardService]},
     {path: 'client-types', component: ClientTypesComponent, canActivate: [GuardService]},
     {path: 'manage-clients', component: ManageClientsComponent, canActivate: [GuardService]},
+    {path: 'audit-trail', component: AuditTrailComponent, canActivate: [GuardService]},
+    {path: 'manage-banks', component: ManageBanksComponent, canActivate: [GuardService]},
+    {path: 'view-bank', component: ViewBankComponent, canActivate: [GuardService]},
     {path: 'client/:clientId/manage-documents', component: ManageClientDocumentsComponent, canActivate: [GuardService]},
     {path: 'change-password', component: ChangePasswordComponent, canActivate: [GuardService]},
     {path: 'manage-documents', component: UserDashboardComponent, canActivate: [GuardService]},
@@ -106,6 +112,9 @@ export const adminRouting: IRouting = {
     AdminDashboardComponent,
     ClientTypesComponent,
     ManageClientsComponent,
+    AuditTrailComponent,
+    ManageBanksComponent,
+    ViewBankComponent,
     ManageClientDocumentsComponent
   ],
   entryComponent: [],

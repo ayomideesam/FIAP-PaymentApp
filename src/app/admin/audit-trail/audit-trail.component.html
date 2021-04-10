@@ -1,0 +1,158 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row mt-4" id="viewUsers">
+      <div class="col-lg-12">
+        <div class="card viewCard">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">assignment</i>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="toolbar">
+              FIAP Audit Trail
+            </div>
+
+            <div class="material-datatables mt-3">
+              <div class="text-center mt-5" *ngIf="loadingTable">
+                <i class="fa fa-spin fa-spinner fa-5x" style="color: #0a6ebd">
+                </i>
+              </div>
+              <div *ngIf="!loadingTable">
+                <table  id="showAudit" class="table table-striped table-no-bordered table-hover text-center"
+                        cellspacing="0" width="100%" style="width:100%">
+                  <thead>
+                  <tr class="">
+                    <th width="6%" class="disabled-sorting no-sort font-weight-bold">S/N</th>
+                    <th class="font-weight-bold">ID</th>
+                    <th width="15%" class="font-weight-bold">Email</th>
+                    <th width="25%" class="font-weight-bold">Event</th>
+                    <th width="10%" class="font-weight-bold">Flag</th>
+                    <th class="font-weight-bold">Request Time</th>
+                    <th class="disabled-sorting text-center no-sort" width="15%"></th>
+                  </tr>
+                  </thead>
+                  <tfoot>
+                  <tr>
+                    <th>S/N</th>
+                    <th class="font-weight-bold">ID</th>
+                    <th class="font-weight-bold">Email</th>
+                    <th class="font-weight-bold">Event</th>
+                    <th class="font-weight-bold">Flag</th>
+                    <th class="font-weight-bold">Request Time</th>
+                    <th class="text-center"></th>
+                  </tr>
+                  </tfoot>
+                  <tbody *ngIf="clients.length > 0">
+                  <tr *ngFor="let client of clients; index as i">
+                    <td>{{ i }}</td>
+                    <!--<td>{{client?.id}}</td>-->
+                    <td>{{client?.id}}</td>
+                    <td>{{client?.email}}</td>
+                    <td>{{client?.event}}</td>
+                    <td>{{client?.flag}}</td>
+                    <td>{{client?.requestTime}}</td>
+                    <td class="text-center">
+                      <a href="javascript:void(0)" (click)="viewAuditLog(client)"
+                         class="btn btn-link btn-warning btn-just-icon view">
+                        <i class="material-icons">visibility</i>
+                        <div class="ripple-container"></div>
+                      </a>
+                      <!--<a href="javascript:void(0)" (click)="viewDocuments(client)" class="btn btn-link btn-primary">-->
+                        <!--<i class="material-icons">dvr</i>-->
+                        <!--View Documents-->
+                        <!--<div class="ripple-container"></div>-->
+                      <!--</a>-->
+                    </td>
+                  </tr>
+                  </tbody>
+                  <tbody *ngIf="clients.length < 1">
+                  <tr ><td colspan="3">No Audit Trail Available!</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--View Audit Modal-->
+    <div class="row mt-4" *ngIf="formPage">
+      <div class="col-md-6 col-sm-12 offset-md-3">
+        <div class="card">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">people</i>
+            </div>
+          </div>
+          <form novalidate>
+            <div class="card-body">
+              <div class="toolbar">
+                {{createdDisplay.title}}
+              </div>
+              <div class="form-group bmd-form-group mb-3 mt-3">
+                <label for="ID" class="">ID *</label>
+                <input type="number" class="form-control" id="ID" [readonly]="updateMode" required name="id" [(ngModel)]="client.id"
+                       [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="EMAIL" class="">Email *</label>
+                <input type="email" class="form-control" id="EMAIL" [readonly]="updateMode" required name="email"
+                       [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="EVENT" class="">Audit Event *</label>
+                <input type="text" class="form-control" id="EVENT" [readonly]="updateMode" required name="email"
+                       [(ngModel)]="client.event" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="FLAG" class="">Audit Flag *</label>
+                <input type="text" class="form-control" id="FLAG" [readonly]="updateMode" required name="flag"
+                       [(ngModel)]="client.flag" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="REQUEST" class="">Audit Flag *</label>
+                <input type="text" class="form-control" id="REQUEST" [readonly]="updateMode" required name="request"
+                       [(ngModel)]="client.request" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="STATUS" class="">Audit Flag *</label>
+                <input type="text" class="form-control" id="STATUS" [readonly]="updateMode" required name="status"
+                       [(ngModel)]="client.status" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="RequestTime" class="">Request Time *</label>
+                <input type="text" class="form-control" id="RequestTime" [readonly]="updateMode" required name="requestTime"
+                       [(ngModel)]="client.requestTime" [ngModelOptions]="{standalone: true}">
+              </div>
+              <!--<div class="form-group bmd-form-group mb-3">
+                &lt;!&ndash;<label class="">Client Type *</label>&ndash;&gt;
+                <ng-select [items]="clientTypes" class="ng-select-form" id="clientType" #clientTypeList [searchable]="false"
+                           [notFoundText]="'No matching client type'"
+                           placeholder="Select client type"
+                           bindLabel="name"
+                           bindValue="id"
+                           [(ngModel)]="client.client_type_id" [ngModelOptions]="{standalone: true}">
+                  <ng-template ng-header-tmp>
+                    <input style="width: 100%; line-height: 24px" type="text" placeholder="Search..." (input)="clientTypeList.filter($event.target.value)"/>
+                  </ng-template>
+                </ng-select>
+              </div>-->
+              <div class="category form-category">* Required fields</div>
+            </div>
+            <div class="card-footer ml-auto mr-auto justify-content-center">
+              <!--<button type="submit" class="btn btn-info" [disabled]="!client.first_name || !client.last_name || !client.email || !client.client_type_id || loading">{{createdDisplay?.btnTxt}}
+                <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
+                <div class="ripple-container"></div>
+              </button>-->
+              <button type="reset" class="btn btn-info" (click)="resetForm()">Cancel/Close
+                <div class="ripple-container"></div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

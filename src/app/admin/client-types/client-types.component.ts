@@ -15,8 +15,8 @@ export class ClientTypesComponent implements OnInit {
   public loading = false;
   public clientTypes: any[] = [];
   public clientType = {
-    name: null,
-    description: null
+    firstName: null,
+    phoneNumber: null
   };
   private updateMode: any;
   public createdDisplay = {
@@ -33,9 +33,9 @@ export class ClientTypesComponent implements OnInit {
   }
   public getClientTypes(): void {
     this.loadingTable  = true;
-    this.userService.getClientTypes().subscribe((res: IResponse) => {
-      this.clientTypes =  res.data.data;
-      // this.bootstrapNotifyService.success(res.message || 'Client types fetched successfully!');
+    this.userService.getClientTypes().subscribe((res: any) => {
+      this.clientTypes =  res.content;
+      this.bootstrapNotifyService.success(res.message || 'Client types fetched successfully!');
       this.loadingTable = false;
       this.utilService.startDatatable('listClientTypes');
     }, error => {
@@ -46,8 +46,8 @@ export class ClientTypesComponent implements OnInit {
   }
   public resetForm() {
     this.clientType = {
-      name: null,
-      description: null
+      firstName: null,
+      phoneNumber: null
     };
     this.updateMode = null;
     this.createdDisplay = {
@@ -56,16 +56,16 @@ export class ClientTypesComponent implements OnInit {
     };
   }
   public editType(type: any) {
-  this.resetForm();
-  this.clientType = this.updateMode = JSON.parse(JSON.stringify(type));
-  this.createdDisplay = {
+    this.resetForm();
+    this.clientType = this.updateMode = JSON.parse(JSON.stringify(type));
+    this.createdDisplay = {
       title: 'Update client type',
       btnTxt: 'Save update'
     };
   }
   public saveClientType() {
-    if (!this.clientType.name) {
-      return this.bootstrapNotifyService.info('Client type name is required!');
+    if (!this.clientType.firstName) {
+      return this.bootstrapNotifyService.info('Client type First Name is required!');
     } else if (this.updateMode) {
       this.updateClientType();
     } else {

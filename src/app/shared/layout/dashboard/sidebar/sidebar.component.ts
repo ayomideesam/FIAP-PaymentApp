@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.currentUser = this.authService.getUserDetails();
+    // console.log('CurrentUser', this.client);
     this.userRole = this.authService.getUserRole();
   }
   openPage(url: string) {

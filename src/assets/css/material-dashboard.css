@@ -1331,6 +1331,10 @@ pre code {
     font-size: 0.95rem;
   }
 
+  .AdminRoutes {
+    margin-top: 13%;
+  }
+
   .text-rose{
     font-size: 16px;
   }
@@ -1367,11 +1371,16 @@ pre code {
   }
 
   .AdminRoutes {
-    margin-top: 10px;
+    margin-top: 13%;
   }
+
 }
 
 @media screen and (max-width: 320px) {
+  div .dt-buttons {
+    float: right;
+    margin: 0 26px 0 15px;
+  }
   .navbar-brand img{
     width: 180px;
   }

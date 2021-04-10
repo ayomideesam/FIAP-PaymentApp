@@ -45,8 +45,8 @@ export class ApiService extends RestfulHttpService {
       if (auth && auth.match('login')) {
         sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         console.log('MyToken', data.accessToken);
-        /* sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data.user));
-        sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
+        sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data));
+        /*sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
         sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString())); */
       }
       return res;
@@ -54,6 +54,23 @@ export class ApiService extends RestfulHttpService {
       return res;
     }
   }
+  // in case of getUsersCount: this will art as an interceptor to store the token return and possible login user data
+  /*private userDecode(res: any, getUsers?: string | null) {
+    const data = res;
+    if (res) {
+      console.log('res', res, getUsers);
+      if (getUsers && getUsers.match('user')) {
+        localStorage.setItem(env.USERCOUNT, JSON.stringify(data));
+        console.log('User Data', data);
+        // localStorage.setItem(env.USERCOUNT, JSON.stringify(data));
+        /!*sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
+        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString())); *!/
+      }
+      return res;
+    } else {
+      return res;
+    }
+  }*/
   // handles all delete api request
   public deleteRequest(api: string, path: string, data?: any): Observable<any> {
     let ENDPOINT = `${env.API_URL}/${api}`;
@@ -129,6 +146,7 @@ export class ApiService extends RestfulHttpService {
   // handles all get / list api request
   public getRequest(api: string, path?: string | null, params?: HttpParams): Observable<any> {
     let ENDPOINT = `${env.API_URL}/${api}`;
+
     if (path) {
       ENDPOINT = `${env.API_URL}/${api}/${path}`;
     }
@@ -140,7 +158,7 @@ export class ApiService extends RestfulHttpService {
           );
         })
       ).pipe(catchError(ApiService.errorHandler), map((res) => {
-          // console.log('getRequest2', res);
+          console.log('getRequest2', res);
           return res;
         })
       );

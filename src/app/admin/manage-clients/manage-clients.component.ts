@@ -7,6 +7,7 @@ import {UtilService} from '../../services/utilService/util.service';
 import {Router} from "@angular/router";
 import {environment as ENV} from "../../../environments/environment";
 import {CacheService} from "../../services/cacheService/cache.service";
+import {NgbModal, ModalDismissReasons} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-manage-clients',
@@ -19,25 +20,35 @@ export class ManageClientsComponent implements OnInit {
   public loading = false;
   // public clients: any[] = [];
   public clients: any = [];
-  public clientTypes: any[] = [];
+  public clientTypes: any = [];
   public client = {
     firstName: null,
     lastName: null,
     email: null,
     phoneNumber: null,
     address: null,
-    id: null
+    id: null,
+    status: null,
+    loginStatus: null,
+    passwordExpired: null,
+    passwordExpirationDaysRemaining: null,
+    createdBy: null,
+    creator: null,
+    lastUpdatedBy: null,
+    approved: null
   };
   private updateMode: any;
+  activeStaffId = null;
   public createdDisplay = {
     title: 'Create new client',
     btnTxt: 'Save client'
   };
+  closeResult: string;
   constructor(private eventService: EventsService, private userService: UserService,
               private utilService: UtilService, private router: Router,
-              private bootstrapNotifyService: BootstrapNotifyService, private cacheService: CacheService) {
+              private bootstrapNotifyService: BootstrapNotifyService, private cacheService: CacheService, private modalService: NgbModal) {
     const token = this.cacheService.getSession(ENV.TOKEN);
-    console.log('this is token', token);
+    // console.log('this is token', token);
     if(!token || token === '' ) {
       console.log('token is here');
       this.router.navigate(['/']);
@@ -58,7 +69,8 @@ export class ManageClientsComponent implements OnInit {
     this.userService.getUsers().subscribe((res: any) => {
       // this.clients =  res.data.data;
       this.clients =  res.content;
-      console.log('User Response', res);
+      this.cacheService.setStorage(ENV.USERCOUNT, res.count);
+      // console.log('User Response', res);
       this.loadingTable = false;
       this.utilService.startDatatable('listUsers');
     }, error => {
@@ -75,7 +87,15 @@ export class ManageClientsComponent implements OnInit {
       email: null,
       phoneNumber: null,
       address: null,
-      id: null
+      id: null,
+      status: null,
+      loginStatus: null,
+      passwordExpired: null,
+      passwordExpirationDaysRemaining: null,
+      createdBy: null,
+      creator: null,
+      lastUpdatedBy: null,
+      approved: null
     };
     this.updateMode = null;
     this.createdDisplay = {
@@ -83,8 +103,11 @@ export class ManageClientsComponent implements OnInit {
       btnTxt: 'Save Client'
     };
   }
-  public editClient(client: any) {
+
+  public editClient(client) {
+    console.log('active', client);
     this.client = this.updateMode = JSON.parse(JSON.stringify(client));
+    this.activeStaffId = client.id;
     this.createdDisplay = {
       title: 'Update client',
       btnTxt: 'Save Client'
@@ -127,10 +150,10 @@ export class ManageClientsComponent implements OnInit {
   }
   private updateClient() {
     this.loading = true;
-    this.userService.updateClient(this.client, this.updateMode.id).subscribe((res) => {
+    this.userService.updateClient(this.client, this.updateMode.id).subscribe((res: any) => {
       this.loading = false;
       console.log('Res', res);
-      this.bootstrapNotifyService.success('Client updated!');
+      this.bootstrapNotifyService.success(res.description, res.code);
       this.resetForm();
       // this.getClients();
       this.getUsers();
@@ -140,8 +163,8 @@ export class ManageClientsComponent implements OnInit {
     });
   }
   private getClientTypes() {
-    this.userService.getClientTypes().subscribe((res: IResponse) => {
-      this.clientTypes =  res.data.data;
+    this.userService.getClientTypes().subscribe((res: any) => {
+      this.clientTypes =  res.content;
     }, error => {
       this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
@@ -153,6 +176,38 @@ export class ManageClientsComponent implements OnInit {
     } else {
       $('#viewUsers').addClass('d-none');
       this.formPage = true;
+    }
+  }
+
+  openDetails(targetModal, client) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+    document.getElementById('clientID').setAttribute('value', client.id);
+    document.getElementById('clientFirstName').setAttribute('value', client.firstName);
+    document.getElementById('clientLastName').setAttribute('value', client.lastName);
+    document.getElementById('clientEmail').setAttribute('value', client.email);
+    document.getElementById('clientPhoneNumber').setAttribute('value', client.phoneNumber);
+    document.getElementById('clientAddress').setAttribute('value', client.address);
+    document.getElementById('clientStatus').setAttribute('value', client.status);
+    document.getElementById('clientLoginStatus').setAttribute('value', client.loginStatus);
+    document.getElementById('clientPasswordExpired').setAttribute('value', client.passwordExpired);
+    document.getElementById('clientPasswordExpirationDaysRemaining').setAttribute('value', client.passwordExpirationDaysRemaining);
+    document.getElementById('clientCreatedBy').setAttribute('value', client.createdBy);
+    document.getElementById('clientCreator').setAttribute('value', client.creator);
+    document.getElementById('clientLastUpdatedBy').setAttribute('value', client.lastUpdatedBy);
+    document.getElementById('clientApproved').setAttribute('value', client.approved);
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 }

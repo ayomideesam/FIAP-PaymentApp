@@ -7,11 +7,17 @@
             <div class="card-icon">
               <i class="material-icons">people</i>
             </div>
-            <p class="card-category">Clients</p>
-            <h3 class="card-title">20</h3>
+            <p class="card-category">Users</p>
+            <h3 class="card-title">
+              <span *ngIf="clientCount">
+                 {{clientCount}}
+                <b class="caret"></b>
+              </span>
+            </h3>
           </div>
           <div class="card-footer">
             <div class="stats">
+              <span class="material-icons">verified_user</span>
               <!--<a href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">Manage Clients</a>-->
               <a href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">Manage Users</a>
             </div>
@@ -22,14 +28,20 @@
         <div class="card card-stats">
           <div class="card-header card-header-success card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">check</i>
+              <i class="material-icons">input</i>
             </div>
-            <p class="card-category">Verified</p>
-            <h3 class="card-title">89</h3>
+            <p class="card-category">Audit Log</p>
+            <h3 class="card-title">
+              <span *ngIf="auditCount">
+                 {{auditCount}}
+                <b class="caret"></b>
+              </span>
+            </h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">table</i> View all visitors
+              <i class="material-icons">description</i>
+              <a href="javascript:void(0)" [routerLink]="['/admin/audit-trail']">Audit Trail</a>
             </div>
           </div>
         </div>
@@ -38,17 +50,21 @@
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">edit_off</i>
+              <i class="material-icons">account_balance_wallet</i>
             </div>
-            <p class="card-category">Pending Clients</p>
-            <h3 class="card-title">21</h3>
+            <p class="card-category">Banks</p>
+            <h3 class="card-title">
+              <span *ngIf="bankCount">
+                 {{bankCount}}
+                <b class="caret"></b>
+              </span>
+            </h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">people</i>
-              <a href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">View Users</a>
+              <i class="material-icons">account_balance</i>
+              <a href="javascript:void(0)" [routerLink]="['/admin/manage-banks']">Manage Banks</a>
               <!--<a href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">View clients</a>-->
-
             </div>
           </div>
         </div>

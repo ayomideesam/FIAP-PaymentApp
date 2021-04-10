@@ -48,14 +48,14 @@
       </li>
 
       <li class="nav-item" id="manage-clients">
-        <a class="nav-link" data-toggle="collapse" href="#manageClients" >
+        <a class="nav-link" data-toggle="collapse" href="#manageClients">
           <i class="material-icons">people</i>
           <p> <!--Manage Clients-->
           <p> Manage Users
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse" id="manageClients" >
+        <div class="collapse" id="manageClients">
           <ul class="nav">
             <li class="nav-item  special-class"  id="manage-users">
               <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">
@@ -68,19 +68,54 @@
         </div>
       </li>
 
+      <li class="nav-item" id="manage-audit">
+        <a class="nav-link" data-toggle="collapse" href="#manageAudits">
+          <i class="material-icons">input</i>
+          <p> Audit Trail
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="manageAudits">
+          <ul class="nav">
+            <li class="nav-item  special-class"  id="manage-auditTrail">
+              <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/audit-trail']">
+                <span class="sidebar-mini"> AT </span>
+                <!--<span class="sidebar-normal">All Clients</span>-->
+                <span class="sidebar-normal">Audit Log</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item" id="manage-banks">
+        <a class="nav-link" data-toggle="collapse" href="#manageBanks">
+          <i class="material-icons">account_balance_wallet</i>
+          <p> Manage Banks
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="manageBanks">
+          <ul class="nav">
+            <li class="nav-item  special-class"  id="manage-allBanks">
+              <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/manage-banks']">
+                <span class="sidebar-mini"> AB </span>
+                <!--<span class="sidebar-normal">All Clients</span>-->
+                <span class="sidebar-normal">All Banks</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
 
       <li class="nav-item special-class" id="client-types">
         <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/client-types']">
           <i class="material-icons">compare_arrows</i>
           <!--<p>Client Types</p>-->
-          <p>User Types</p>
+          <p>User Data</p>
         </a>
       </li>
     </ul>
-
-
-
-
 
     <!--<ul class="nav" *ngIf="userRole.toLowerCase() === 'client'">-->
     <ul class="nav">
@@ -90,9 +125,6 @@
           <span class="sidebar-normal">Manage Documents</span>
         </a>
       </li>
-
-
-
     </ul>
 
   </div>
