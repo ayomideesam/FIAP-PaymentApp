@@ -6,7 +6,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {IResponse} from '../../../interfaces/iresponse';
 import {ApiService} from '../../api/api.service';
-// import { RestfulHttpService } from './../httpService/service.service';
 import { RestfulHttpService } from '../../httpService/service.service';
 import {map} from 'rxjs/operators';
 
