@@ -13,10 +13,9 @@ declare const $: any;
 })
 export class ChangePasswordComponent implements OnInit {
   public passwordCredential = {
-    old_password: null,
-    new_password: null,
-    confirm_password: null,
-    userId: null
+    email: null,
+    oldPassword: null,
+    password: null,
   };
   public loading = false;
   public currentUser;
@@ -26,41 +25,38 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
     this.eventService.broadcast('BREADCRUMB', 'Change Password');
     this.currentUser = this.authService.getUserDetails();
-    this.passwordCredential.userId = this.currentUser.id;
+    // this.passwordCredential.userId = this.currentUser.id;
   }
   public updatePassword() {
     console.log('Pass ', this.passwordCredential);
-    if (!this.passwordCredential.old_password) {
-      this.bootstrapNotifyService.error('Enter previous password!');
-    } else if (!this.passwordCredential.new_password) {
-      this.bootstrapNotifyService.error('Enter new password!');
-    } else if (!this.passwordCredential.confirm_password) {
-      this.bootstrapNotifyService.error('Confirm new password!');
-    } else if (this.passwordCredential.confirm_password !== this.passwordCredential.new_password) {
-      this.bootstrapNotifyService.error('New password must match confirm password!');
-    } else if (this.passwordCredential.new_password.length < 7) {
+    if (!this.passwordCredential.email) {
+      this.bootstrapNotifyService.error('Enter Email Address!');
+    } else if (!this.passwordCredential.oldPassword) {
+      this.bootstrapNotifyService.error('Enter Old Password!');
+    } else if (!this.passwordCredential.password) {
+      this.bootstrapNotifyService.error('Enter New Password!');
+    } else if (this.passwordCredential.password.length < 8) {
       this.bootstrapNotifyService.error('New password length too short!');
     } else {
       this.loading = true;
-      this.userService.changePassword(this.passwordCredential).subscribe((res: IResponse) => {
-        console.log('Password Update ', res);
+      this.userService.changeUserPassword(this.passwordCredential).subscribe((res: any) => {
+        console.log('Password Update', res);
         this.loading = false;
         this.resetForm();
-        this.bootstrapNotifyService.success('Password changed successfully');
+        this.bootstrapNotifyService.success(res.description, res.code);
         this.authService.logOut();
       }, error => {
         console.log('Error ', error);
         this.loading = false;
-        this.bootstrapNotifyService.error(error.error.message || 'Unable to update password');
+        this.bootstrapNotifyService.error(error.error.description, error.error.code);
       });
     }
   }
   private resetForm() {
     this.passwordCredential = {
-      old_password: null,
-      new_password: null,
-      confirm_password: null,
-      userId: this.currentUser.id
+      email: null,
+      oldPassword: null,
+      password: null,
     };
   }
 }

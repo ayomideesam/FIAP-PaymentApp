@@ -10,7 +10,7 @@
           </div>
           <div class="card-body">
             <div class="toolbar">
-              List all client types
+              List of all User Approvals
             </div>
             <div class="material-datatables mt-3">
               <div class="text-center mt-5" *ngIf="loadingTable">
@@ -21,8 +21,8 @@
                   <thead>
                   <tr class="">
                     <th width="10%" class="disabled-sorting no-sort font-weight-bold">S/N</th>
-                    <th width="20%" class="font-weight-bold">Name</th>
-                    <th width="55%" class="font-weight-bold">Description</th>
+                    <th width="25%" class="font-weight-bold">NAME</th>
+                    <th width="50%" class="font-weight-bold">APPROVAL STATUS</th>
                     <th class="disabled-sorting text-center no-sort" width="15%"></th>
                   </tr>
                   </thead>
@@ -37,17 +37,17 @@
                   <tbody *ngIf="clientTypes.length > 0">
                   <tr *ngFor="let type of clientTypes;index as i">
                     <td>{{ i + 1}}</td>
-                    <td>{{type?.firstName}}</td>
-                    <td>{{type?.phoneNumber}}</td>
+                    <td>{{type?.firstName}}  {{type?.lastName}}</td>
+                    <td>{{type?.approved == 1 ? 'APPROVED' : 'DISAPPROVED'}}</td>
                     <td class="text-center">
-                      <a href="javascript:void(0)" (click)="editType(type)" class="btn btn-link btn-warning btn-just-icon edit">
-                        <i class="material-icons">edit</i>
-                        <div class="ripple-container"></div>
+                      <a href="javascript:void(0)" (click)="editType(type)" class="btn btn-link btn-primary">
+                        <i class="material-icons">edit</i>&nbsp;UPDATE APPROVAL
+                        STATUS<div class="ripple-container"></div>
                       </a>
-                      <a href="javascript:void(0)" (click)="deleteType(type)" class="btn btn-link btn-danger btn-just-icon remove">
+                      <!--<a href="javascript:void(0)" (click)="deleteType(type)" class="btn btn-link btn-danger btn-just-icon remove">
                         <i class="material-icons">close</i>
                         <div class="ripple-container"></div>
-                      </a>
+                      </a>-->
                     </td>
                   </tr>
                   </tbody>
@@ -73,19 +73,22 @@
                 {{createdDisplay.title}}
               </div>
               <div class="form-group bmd-form-group mb-3 mt-3">
-                <label for="firstName" class="">Name *</label>
-                <input type="text" class="form-control" id="firstName" required name="firstName" [(ngModel)]="clientType.firstName" [ngModelOptions]="{standalone: true}">
+                <label for="firstName" class="">NAME *</label>
+                <input type="text" class="form-control" id="firstName" required name="firstName"
+                       [(ngModel)]="clientType.firstName"
+                       [ngModelOptions]="{standalone: true}" readonly>
               </div>
 
               <div class="form-group bmd-form-group mb-2">
-                <label for="description" class="">Description </label>
-                <textarea  class="form-control" id="description" name="description" [(ngModel)]="clientType.phoneNumber" [ngModelOptions]="{standalone: true}">
+                <label for="approvals" class="">APPROVAL STATUS </label>
+                <textarea  class="form-control" id="approvals" name="approved" [(ngModel)]="clientType.approved" [ngModelOptions]="{standalone: true}">
               </textarea>
               </div>
               <div class="category form-category">* Required fields</div>
             </div>
             <div class="card-footer ml-auto mr-auto justify-content-center">
-              <button type="submit" class="btn btn-info" [disabled]="!clientType.firstName || loading">{{createdDisplay?.btnTxt}}
+              <button type="submit" class="btn btn-info"
+                      [disabled]="!clientType.firstName || !clientType.approved || loading">{{createdDisplay?.btnTxt}}
                 <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
                 <div class="ripple-container"></div>
               </button>

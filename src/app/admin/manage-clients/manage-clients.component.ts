@@ -40,8 +40,8 @@ export class ManageClientsComponent implements OnInit {
   private updateMode: any;
   activeStaffId = null;
   public createdDisplay = {
-    title: 'Create new client',
-    btnTxt: 'Save client'
+    title: 'Create New User',
+    btnTxt: 'Create User'
   };
   closeResult: string;
   constructor(private eventService: EventsService, private userService: UserService,
@@ -155,7 +155,6 @@ export class ManageClientsComponent implements OnInit {
       console.log('Res', res);
       this.bootstrapNotifyService.success(res.description, res.code);
       this.resetForm();
-      // this.getClients();
       this.getUsers();
     }, error => {
       this.loading =  false;

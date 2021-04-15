@@ -17,7 +17,7 @@ import {ManageClientDocumentsComponent} from './admin/manage-client-documents/ma
 import {AuditTrailComponent} from "./admin/audit-trail/audit-trail.component";
 import {ManageBanksComponent} from "./admin/manage-banks/manage-banks.component";
 import {ViewBankComponent} from "./admin/manage-banks/view-bank.component";
-
+import {ApprovalsComponent} from "./admin/approvals/approvals.component";
 
 const landingRoutes: Routes = [
   {path: '', component: LoginComponent, pathMatch: 'full'},
@@ -94,6 +94,7 @@ export const adminRoutes: Routes = [
     {path: 'dashboard', component: AdminDashboardComponent, canActivate: [GuardService]},
     {path: 'client-types', component: ClientTypesComponent, canActivate: [GuardService]},
     {path: 'manage-clients', component: ManageClientsComponent, canActivate: [GuardService]},
+    // {path: 'approvals', component: ApprovalsComponent, canActivate: [GuardService]},
     {path: 'audit-trail', component: AuditTrailComponent, canActivate: [GuardService]},
     {path: 'manage-banks', component: ManageBanksComponent, canActivate: [GuardService]},
     {path: 'view-bank', component: ViewBankComponent, canActivate: [GuardService]},
@@ -112,6 +113,7 @@ export const adminRouting: IRouting = {
     AdminDashboardComponent,
     ClientTypesComponent,
     ManageClientsComponent,
+    // ApprovalsComponent,
     AuditTrailComponent,
     ManageBanksComponent,
     ViewBankComponent,

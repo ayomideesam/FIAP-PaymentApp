@@ -46,8 +46,9 @@ export class ApiService extends RestfulHttpService {
         sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         console.log('MyToken', data.accessToken);
         sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data));
-        /*sessionStorage.setItem(env.TOKEN_DATE, JSON.stringify(data.tokenExpiry));
-        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date().toISOString())); */
+        const tokenExpiry = Date.now() + 2000; // 2 seconds
+        sessionStorage.setItem(env.TOKENEXPIRYCOUNT, JSON.stringify(tokenExpiry));
+        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(Date.now()));
       }
       return res;
     } else {

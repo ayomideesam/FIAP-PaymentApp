@@ -29,7 +29,7 @@
         <div class="collapse" id="userInfo">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0)" (click)="openPage('change-password')">
+              <a class="nav-link" href="javascript:void(0)" [routerLink]="['change-password']">
                 <span class="sidebar-mini"> CP </span>
                 <span class="sidebar-normal">Change Password</span>
               </a>
@@ -59,11 +59,18 @@
           <ul class="nav">
             <li class="nav-item  special-class"  id="manage-users">
               <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/manage-clients']">
-                <span class="sidebar-mini"> AC </span>
+                <span class="sidebar-mini"> AU </span>
                 <!--<span class="sidebar-normal">All Clients</span>-->
                 <span class="sidebar-normal">All Users</span>
               </a>
             </li>
+            <!--<li class="nav-item  special-class"  id="users-approve-reject">
+              <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/approvals']">
+                <span class="sidebar-mini"> AP </span>
+                &lt;!&ndash;<span class="sidebar-normal">All Clients</span>&ndash;&gt;
+                <span class="sidebar-normal">Approvals</span>
+              </a>
+            </li>-->
           </ul>
         </div>
       </li>
@@ -112,20 +119,20 @@
         <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/client-types']">
           <i class="material-icons">compare_arrows</i>
           <!--<p>Client Types</p>-->
-          <p>User Data</p>
+          <p>User Approvals</p>
         </a>
       </li>
     </ul>
 
     <!--<ul class="nav" *ngIf="userRole.toLowerCase() === 'client'">-->
-    <ul class="nav">
+    <!--<ul class="nav">
       <li class="nav-item special-class" id="manage-companies">
         <a class="nav-link" href="javascript:void(0)" [routerLink]="['/client/manage-documents']">
           <span class="sidebar-mini"> MD </span>
           <span class="sidebar-normal">Manage Documents</span>
         </a>
       </li>
-    </ul>
+    </ul>-->
 
   </div>
 </div>

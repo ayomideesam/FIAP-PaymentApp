@@ -22,8 +22,7 @@ export class UserService {
   }
   logout(): Observable<IResponse> {
     return this.api.getRequest('user', 'logout').pipe(
-      map((res: IResponse) => {
-        return res;
+      map((res: IResponse) => {return res;
       })
     );
   }
@@ -56,7 +55,7 @@ export class UserService {
     );
   }
   changeUserPassword(data: any): Observable<IResponse> {
-    return this.api.postRequest('user', 'changepassword' , data).pipe(
+    return this.api.putRequest('user', 'changepassword' , data).pipe(
       map((res: IResponse) => {
         return res;
       })
@@ -88,6 +87,16 @@ export class UserService {
       })
     );
   }
+
+  toggleUsers(data: object) {
+    return this.api.putRequest('user', 'approvereject', data).pipe(
+      map((res: any) => {
+        console.log('update_approval', res);
+        return res;
+      })
+    );
+  }
+
   getAuditLog(): Observable<IResponse> {
     return this.api.getRequest('auditlog', 'paging').pipe( map((res: any) => {
         return res;
@@ -115,8 +124,9 @@ export class UserService {
     );
   }
   createClient(data: object): Observable<IResponse> {
-    return this.api.postRequest('admin', 'client', data).pipe(
-      map((res: IResponse) => {
+    return this.api.postRequest('user', '', data).pipe(
+      map((res: any) => {
+        console.log('CreateNewClient', res);
         return res;
       })
     );
@@ -130,9 +140,9 @@ export class UserService {
   }
 
   updateClientType(data: object, id: string): Observable<IResponse> {
-    return this.api.putRequest('user', '', data).pipe(
+    return this.api.putRequest('user', 'approvereject', data).pipe(
       map((res: any) => {
-        console.log('update', res);
+        console.log('update aprroval', res);
         return res;
       })
     );

@@ -8,7 +8,8 @@
               <i class="material-icons">assignment</i>
             </div>
             <div class="float-right">
-              <button type="button" (click)="toggleView()" class="btn btn-primary">Create Client<div class="ripple-container"></div></button>
+              <button type="button" (click)="toggleView()" class="btn btn-primary">Create User<div
+                class="ripple-container"></div></button>
             </div>
           </div>
           <div class="card-body">
@@ -111,34 +112,20 @@
                 <input type="email" class="form-control" id="email" [readonly]="updateMode" required name="email" [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
-                <label for="phoneNumber" class="">Client Phone Number *</label>
-                <input type="number" class="form-control" id="phoneNumber" required
+                <label for="phone" class="">Client Phone Number *</label>
+                <input type="tel" class="form-control" id="phone" pattern="[+]{1}[0-9]{11,14}" required
                        name="phoneNumber" [(ngModel)]="client.phoneNumber" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="address" class="">Client Address *</label>
-                <input type="text" class="form-control" id="address" [readonly]="updateMode" required name="address"
+                <input type="text" class="form-control" id="address" required name="address"
                        [(ngModel)]="client.address" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="id" class="">Client Id *</label>
-                <input type="text" class="form-control" id="id" [readonly]="updateMode" required name="id"
+                <input type="text" class="form-control" id="id" [readonly]="updateMode" name="id"
                        [(ngModel)]="client.id" [ngModelOptions]="{standalone: true}">
               </div>
-              <!--<div class="form-group bmd-form-group mb-3">
-                &lt;!&ndash;<label class="">Client Type *</label>&ndash;&gt;
-                <ng-select [items]="clientTypes" class="ng-select-form" id="clientType" #clientTypeList [searchable]="false"
-                           [notFoundText]="'No matching client type'"
-                           placeholder="Select client type"
-                           bindLabel="name"
-                           bindValue="id"
-                           [(ngModel)]="client.client_type_id" [ngModelOptions]="{standalone: true}">
-                  <ng-template ng-header-tmp>
-                    <input style="width: 100%; line-height: 24px" type="text" placeholder="Search..." (input)="clientTypeList.filter($event.target.value)"/>
-                  </ng-template>
-                </ng-select>
-              </div>-->
-
               <div class="category form-category">* Required fields</div>
             </div>
             <div class="card-footer ml-auto mr-auto justify-content-center">

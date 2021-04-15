@@ -16,56 +16,56 @@ export class ClientTypesComponent implements OnInit {
   public clientTypes: any[] = [];
   public clientType = {
     firstName: null,
-    phoneNumber: null
+    approved: null
   };
   private updateMode: any;
   public createdDisplay = {
-    title: 'Create new client type',
-    btnTxt: 'Save new'
+    title: 'Update User Approvals',
+    btnTxt: 'Save Update'
   };
   constructor(private eventService: EventsService, private userService: UserService,
               private utilService: UtilService,
               private bootstrapNotifyService: BootstrapNotifyService) { }
 
   ngOnInit(): void {
-    this.eventService.broadcast('BREADCRUMB', 'Client Types');
+    this.eventService.broadcast('BREADCRUMB', 'User Approvals');
     this.getClientTypes();
   }
   public getClientTypes(): void {
     this.loadingTable  = true;
     this.userService.getClientTypes().subscribe((res: any) => {
       this.clientTypes =  res.content;
-      this.bootstrapNotifyService.success(res.message || 'Client types fetched successfully!');
+      this.bootstrapNotifyService.success(res.message || 'Approvals fetched successfully!');
       this.loadingTable = false;
       this.utilService.startDatatable('listClientTypes');
     }, error => {
       console.log('E ', error);
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to get client types');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
       this.loadingTable = false;
     });
   }
   public resetForm() {
     this.clientType = {
       firstName: null,
-      phoneNumber: null
+      approved: null
     };
     this.updateMode = null;
     this.createdDisplay = {
-      title: 'Create new client type',
-      btnTxt: 'Save new'
+      title: 'Update User Approvals',
+      btnTxt: 'Save Update'
     };
   }
   public editType(type: any) {
     this.resetForm();
     this.clientType = this.updateMode = JSON.parse(JSON.stringify(type));
     this.createdDisplay = {
-      title: 'Update client type',
-      btnTxt: 'Save update'
+      title: 'Update User Approvals',
+      btnTxt: 'Save Update'
     };
   }
   public saveClientType() {
     if (!this.clientType.firstName) {
-      return this.bootstrapNotifyService.info('Client type First Name is required!');
+      return this.bootstrapNotifyService.info('User First Name is required!');
     } else if (this.updateMode) {
       this.updateClientType();
     } else {
@@ -81,20 +81,20 @@ export class ClientTypesComponent implements OnInit {
       this.getClientTypes();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to save client type!');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   private updateClientType() {
     this.loading = true;
-    this.userService.updateClientType(this.clientType, this.updateMode.id).subscribe((res) => {
+    this.userService.updateClientType(this.clientType, this.updateMode.id).subscribe((res:any) => {
       this.loading = false;
       console.log('Res', res);
-      this.bootstrapNotifyService.success('Client type updated!');
+      this.bootstrapNotifyService.success(res.description, res.code);
       this.resetForm();
       this.getClientTypes();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to update client type!');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   public deleteType(type: any) {
@@ -103,7 +103,7 @@ export class ClientTypesComponent implements OnInit {
         this.bootstrapNotifyService.success('Client type deleted!');
         this.getClientTypes();
       }, error => {
-        this.bootstrapNotifyService.error(error.error.message || 'Unable to delete client type!');
+        this.bootstrapNotifyService.error(error.error.description, error.error.code);
       });
     });
   }
