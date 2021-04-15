@@ -1,0 +1,120 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row mt-4" id="viewUsers">
+      <div class="col-lg-12">
+        <div class="card viewCard">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">assignment</i>
+            </div>
+            <div class="float-right">
+              <button type="button" (click)="toggleView()" class="btn btn-primary">Create User<div
+                class="ripple-container"></div></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="toolbar">
+              <!--List all clients-->
+              List of all FIAP Users
+            </div>
+
+            <div class="material-datatables mt-3">
+              <div class="text-center mt-5" *ngIf="loadingTable">
+                <i class="fa fa-spin fa-spinner fa-5x" style="color: #0a6ebd">
+
+                </i>
+              </div>
+              <div *ngIf="!loadingTable">
+                <table  id="listUsers" class="table table-striped table-no-bordered table-hover text-center"
+                        cellspacing="0" width="100%" style="width:100%">
+                  <thead>
+                  <tr class="">
+                    <th class="disabled-sorting no-sort font-weight-bold">S/N</th>
+                    <th class="font-weight-bold">First Name</th>
+                    <th class="font-weight-bold">Last Name</th>
+                    <th class="font-weight-bold">Email</th>
+                    <th class="font-weight-bold">Creator</th>
+                    <th class="font-weight-bold">Approval Status</th>
+                    <th class="disabled-sorting text-center no-sort" width="25%"></th>
+                  </tr>
+                  </thead>
+                  <tfoot>
+                  <tr>
+                    <th>S/N</th>
+                    <th class="font-weight-bold">First Name</th>
+                    <th class="font-weight-bold">Last Name</th>
+                    <th class="font-weight-bold">Email</th>
+                    <th class="font-weight-bold">Creator</th>
+                    <th class="font-weight-bold">Approval Status</th>
+                    <th class="text-center"></th>
+                  </tr>
+                  </tfoot>
+                  <tbody *ngIf="clients.length > 0">
+                  <tr *ngFor="let client of clients; index as i">
+                    <td>{{ i + 1}}</td>
+                    <!--<td>{{client?.id}}</td>-->
+                    <td>{{client?.firstName}}</td>
+                    <td>{{client?.lastName}}</td>
+                    <td>{{client?.email}}</td>
+                    <td>{{client?.creator}}</td>
+                    <!--<td>{{client?.client_type?.name}}</td>-->
+                    <td>{{client?.approved == 1 ? 'APPROVED' : 'DISAPPROVED'}}</td>
+                    <td class="text-center">
+                      <a href="javascript:void(0)" (click)="openDetails(contentDetails, client)"
+                         class="btn btn-link btn-primary"><i class="material-icons">edit</i>&nbsp;UPDATE APPROVAL
+                        STATUS<div
+                        class="ripple-container"></div></a>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <tbody *ngIf="clients.length < 1">
+                  <tr ><td colspan="3">No client available!</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Create Users-->
+    <ng-template #contentDetails let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-view-banks">USER APPROVAL STATUS</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="toggleUsers()">
+          <div class="form-group">
+            <label>ID</label>
+            <div class="input-group">
+              <input id="clientID" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Client Approved</label>
+            <div class="input-group">
+              <input id="clientApproved" class="form-control">
+            </div>
+          </div>
+          <div class="ml-auto mr-auto justify-content-center">
+            <button type="submit" class="btn btn-info">{{createdDisplay?.btnTxt}}
+              <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
+              <div class="ripple-container"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">Close</span>
+        </button>
+      </div>
+    </ng-template>
+    <!--Create / Edit Users ENDS Here-->
+
+  </div>
+</div>
