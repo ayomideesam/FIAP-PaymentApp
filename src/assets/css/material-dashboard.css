@@ -16075,6 +16075,7 @@ thead.thead-inverse th,
   border-radius: 3px;
   margin-top: -20px;
   padding: 15px;
+  color: black;
 }
 
 .card [class*="card-header-"] .card-icon,
