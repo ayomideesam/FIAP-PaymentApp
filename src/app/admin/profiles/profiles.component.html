@@ -1,0 +1,374 @@
+<!--<div class="content-wrapper" style="min-height: 1416.81px;">
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-5" style="height: 500px;">
+          &lt;!&ndash; Profile Image &ndash;&gt;
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <p></p>
+              <br>
+              <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle" src="../../assets/images/img1.jpg" alt="User profile picture">
+              </div>
+
+              <h3 class="profile-username text-center" *ngIf="currentUser">
+                {{currentUser?.firstName + " " + currentUser?.lastName}}
+              </h3>
+
+              <p class="text-muted text-center">Software Engineer</p>
+              <br>
+              <ul class="list-group list-group-unbordered mb-3">
+                <mat-divider></mat-divider>
+                <li class="list-group-item">
+                  <b>ID</b>
+                  <a class="float-right" *ngIf="currentUser">
+                    {{currentUser?.id}}
+                  </a>
+                </li>
+                <mat-divider></mat-divider>
+                <li class="list-group-item">
+                  <b>Last Login</b>
+                  <a class="float-right" *ngIf="currentUser">
+                    {{currentUser?.lastLogin}}
+                  </a>
+                </li>
+                <mat-divider></mat-divider>
+                <li class="list-group-item">
+                  <b>Password Last Changed On</b>
+                  <a class="float-right" *ngIf="currentUser">
+                    {{currentUser?.passwordChangedOn}}
+                  </a>
+                </li>
+                <mat-divider></mat-divider>
+                <p></p>
+                <br>
+              </ul>
+            </div>
+            &lt;!&ndash; /.card-body &ndash;&gt;
+          </div>
+          &lt;!&ndash; /.card &ndash;&gt;
+
+        </div>
+        &lt;!&ndash; /.col &ndash;&gt;
+        <div class="col-md-7" style="height: 500px;">
+          &lt;!&ndash; About Me Box &ndash;&gt;
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title text-center">About Me</h3>
+            </div>
+            <mat-divider></mat-divider>
+            &lt;!&ndash; /.card-header &ndash;&gt;
+            <div class="card-body">
+              <strong>
+                <i class="fa fa-user-circle-o"></i>
+                First Name
+              </strong>
+              <p class="text-muted" *ngIf="currentUser">
+                {{currentUser?.firstName}}
+              </p>
+
+              <hr>
+
+              <strong>
+                <i class="fa fa-user-circle"></i>
+                Last Name
+              </strong>
+              <p class="text-muted" *ngIf="currentUser">
+                {{currentUser?.lastName}}
+              </p>
+
+              <hr>
+
+              <strong>
+                <i class="fa fa-phone"></i>
+                Phone Number
+              </strong>
+              <p class="text-muted" *ngIf="currentUser">
+                {{currentUser?.phoneNumber}}
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-envelope"></i> Email Address </strong>
+
+              <p class="text-muted" *ngIf="currentUser">
+                {{currentUser?.email}}
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-file-text"></i> Notes </strong>
+
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            </div>
+            &lt;!&ndash; /.card-body &ndash;&gt;
+          </div>
+          &lt;!&ndash; /.card &ndash;&gt;
+        </div>
+        &lt;!&ndash; /.col &ndash;&gt;
+      </div>
+      &lt;!&ndash; /.row &ndash;&gt;
+    </div>
+  </section>
+
+</div>-->
+<!-- Header -->
+<div class="header pb-6 d-flex align-items-center header-image" style="min-height: 500px; background-image:
+url(./assets/img/theme/team-1.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white" *ngIf="currentUser">
+          Hello {{currentUser?.firstName}}
+        </h1>
+        <p class="text-white mt-0 mb-5">
+          This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+        <!--<a href="#!" class="btn btn-neutral">Edit profile</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2">
+      <div class="card card-profile">
+        <img src="../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a href="#">
+                <img src="../assets/img/theme/img1.jpg" class="rounded-circle" style="width: 140%;">
+              </a>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <!--<a href="#" class="btn btn-sm btn-info  mr-4">Connect</a>
+            <a href="#" class="btn btn-sm btn-default float-right">Message</a>-->
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center">
+                <!--<div>
+                  <span class="heading">22</span>
+                  <span class="description">Friends</span>
+                </div>
+                <div>
+                  <span class="heading">10</span>
+                  <span class="description">Photos</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Comments</span>
+                </div>-->
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h5 class="h3" *ngIf="currentUser">
+              {{currentUser?.firstName + " " + currentUser?.lastName}}
+            </h5>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>Software Developer
+            </div>
+            <hr class="my-4" />
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>Operations Department - Creative Tim Officer
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>Upperlink Limited
+            </div>
+            <br>
+            <mat-divider></mat-divider>
+            <div class="list-group list-group-unbordered mb-3">
+              <div class="list-group-item">
+                <b class="float-left">ID</b>
+                <a class="float-right" *ngIf="currentUser">
+                  {{currentUser?.id}}
+                </a>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="list-group-item">
+                <b class="float-left">Last Login Date</b>
+                <a class="float-right" *ngIf="currentUser">
+                  {{currentUser?.lastLogin}}
+                </a>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="list-group-item">
+                <b class="float-left"> Password Changed On Date</b>
+                <a class="float-right" *ngIf="currentUser">
+                  {{currentUser?.passwordChangedOn}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col-12 text-center">
+              <h3 class="mb-0">View Profile </h3>
+            </div>
+            <div class="col-4 text-right">
+              <!--<a href="#!" class="btn btn-sm btn-primary">Settings</a>-->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Username</label>
+                    <div id="input-username" class="form-control display-forms" *ngIf="currentUser">
+                      {{currentUser?.lastName + "." + currentUser?.firstName}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    <div id="input-email" class="form-control display-forms" *ngIf="currentUser">
+                      {{currentUser?.email}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">First name</label>
+                    <div id="input-first-name" class="form-control display-forms" *ngIf="currentUser">
+                      {{currentUser?.firstName}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Last name</label>
+                    <div id="input-last-name" class="form-control display-forms" *ngIf="currentUser">
+                      {{currentUser?.lastName}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Office Address</label>
+                    <div id="input-address" class="form-control display-forms" *ngIf="currentUser">
+                      ASSBIFI House, 4 ASSBIFI Road, Central Business District, Alausa, Ikeja. Lagos.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-phone">Phone Number</label>
+                    <div id="input-phone" class="form-control display-forms" *ngIf="currentUser">
+                      {{currentUser?.phoneNumber}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Country</label>
+                    <div id="input-country" class="form-control display-forms" *ngIf="currentUser">
+                      Nigeria
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-post">Postal code</label>
+                    <div id="input-post" class="form-control display-forms" *ngIf="currentUser">
+                      100212
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Description -->
+            <!--<h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+              <div class="form-group">
+                <label class="form-control-label">About Me</label>
+                <textarea rows="4" class="form-control" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div>-->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="col-md-4">
+  &lt;!&ndash; Widget: user widget style 1 &ndash;&gt;
+  <div class="card card-widget widget-user">
+    &lt;!&ndash; Add the bg color to the header using any of the bg-* classes &ndash;&gt;
+    <div class="widget-user-header text-white" style="background: url('../dist/img/photo1.png') center center;">
+      <h3 class="widget-user-username text-right">Elizabeth Pierce</h3>
+      <h5 class="widget-user-desc text-right">Web Designer</h5>
+    </div>
+    <div class="widget-user-image">
+      <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-4 border-right">
+          <div class="description-block">
+            <h5 class="description-header">3,200</h5>
+            <span class="description-text">SALES</span>
+          </div>
+          &lt;!&ndash; /.description-block &ndash;&gt;
+        </div>
+        &lt;!&ndash; /.col &ndash;&gt;
+        <div class="col-sm-4 border-right">
+          <div class="description-block">
+            <h5 class="description-header">13,000</h5>
+            <span class="description-text">FOLLOWERS</span>
+          </div>
+          &lt;!&ndash; /.description-block &ndash;&gt;
+        </div>
+        &lt;!&ndash; /.col &ndash;&gt;
+        <div class="col-sm-4">
+          <div class="description-block">
+            <h5 class="description-header">35</h5>
+            <span class="description-text">PRODUCTS</span>
+          </div>
+          &lt;!&ndash; /.description-block &ndash;&gt;
+        </div>
+        &lt;!&ndash; /.col &ndash;&gt;
+      </div>
+      &lt;!&ndash; /.row &ndash;&gt;
+    </div>
+  </div>
+  &lt;!&ndash; /.widget-user &ndash;&gt;
+</div>-->
+
+<br>
