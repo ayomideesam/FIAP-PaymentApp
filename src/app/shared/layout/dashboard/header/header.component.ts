@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../../services/authService/auth.service';
 import {NavigatorService} from '../../../../services/navigatorService/navigator.service';
 import {EventsService} from '../../../../services/eventServices/event.service';
+import {closest} from "@angular/cdk/a11y/focus-trap/polyfill";
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,17 @@ import {EventsService} from '../../../../services/eventServices/event.service';
 })
 export class HeaderComponent implements OnInit {
  public breadcrumb: string;
+ public userName: any;
+
   constructor(private authService: AuthService, private navigatorService: NavigatorService, private eventService: EventsService) {
     this.eventService.on('BREADCRUMB', (crumb: string) => {
       this.breadcrumb = crumb;
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userName = this.authService.getUserDetails();
+  }
 
   public logOutUser() {
     if (this.authService.logOut()) {
@@ -39,4 +44,17 @@ export class HeaderComponent implements OnInit {
       clearInterval(simulateWindowResize);
     }, 1000);
   }
+
+  /*$(document).ready(function(){
+    $('.admin_content').on('click',function (event) {
+      event.preventDefault();
+      $(this).closest('.header_dropdown').find('.account_dropdown').toggle();
+    });
+
+    $(document).on('click', function (e) {
+      if ($(e.target).closest('.header_dropdown').length === 0){
+       $('.account_dropdown').hide();
+      }
+    });
+  });*/
 }

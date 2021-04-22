@@ -2,15 +2,15 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-6">
-        <div class="card card-stats">
+        <div class="card card-stats userCard">
           <div class="card-header card-header-warning card-header-icon">
             <div class="card-icon">
               <i class="material-icons">people</i>
             </div>
             <p class="card-category">Users</p>
-            <h3 class="card-title">
-              <span *ngIf="clientCount">
-                 {{clientCount}}
+            <h3 class="card-title" *ngIf="clients">
+              <span>
+                 {{clients}}
                 <b class="caret"></b>
               </span>
             </h3>
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6 auditCard">
         <div class="card card-stats">
           <div class="card-header card-header-success card-header-icon">
             <div class="card-icon">
@@ -32,8 +32,8 @@
             </div>
             <p class="card-category">Audit Log</p>
             <h3 class="card-title">
-              <span *ngIf="auditCount">
-                 {{auditCount}}
+              <span *ngIf="audits">
+                 {{audits}}
                 <b class="caret"></b>
               </span>
             </h3>
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6 bankCard">
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
@@ -54,8 +54,8 @@
             </div>
             <p class="card-category">Banks</p>
             <h3 class="card-title">
-              <span *ngIf="bankCount">
-                 {{bankCount}}
+              <span *ngIf="banks">
+                 {{banks}}
                 <b class="caret"></b>
               </span>
             </h3>
@@ -70,27 +70,60 @@
       </div>
     </div>
 
-    <div class="card mb-4">
-      <header class="card-header">
-        <h2 class="h3 card-header-title text-center stats">Transactions</h2>
-      </header>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">ID</th>
-              <th scope="col">Bank</th>
-              <th scope="col">Description</th>
-              <th scope="col">Date</th>
-              <th scope="col">Amount</th>
-              <th class="text-center" scope="col">Actions</th>
-            </tr>
-            </thead>
-          </table>
-        </div>
-      </div>
+    <div>
+      <app-widget-area [data]="bigChart"></app-widget-area>
     </div>
+
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="17px" class="stats-cards" style="margin:15px 0;">
+      <mat-card fxFlex="60">
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="bank">
+              <th mat-header-cell *matHeaderCellDef> Bank </th>
+              <td mat-cell *matCellDef="let element"> {{element.bank}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef> Amount </th>
+              <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="example-element-header"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+        <!--<app-transaction-tables></app-transaction-tables>-->
+      </mat-card>
+
+      <mat-card fxFlex="40">
+        <app-widget-pie [data]="pieChart"></app-widget-pie>
+      </mat-card>
+    </div>
+
+    <!--<mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>-->
+
+    <!--<mat-divider></mat-divider>-->
+
   </div>
 </div>

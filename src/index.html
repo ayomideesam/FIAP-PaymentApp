@@ -9,6 +9,13 @@
   <link rel="icon" type="image/png" href="upperlinklogo.jpg" id="theme-color">
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <!--link rel="stylesheet" href="./assets/css/argon.css?v=1.2.0" type="text/css">-->
 </head>
 <style>
   .m-t-30 {
@@ -64,15 +71,19 @@
 
 </style>
 
-<body>
+<body class="mat-typography">
   <app-root>
     <div class="page-loader-wrapper" style="text-align: center; background:white">
       <div class="loader">
         <div class="m-t-30">
-          <img src="../assets/images/upperlink-logo.png" class="welcome-loader"  height="48" alt="Upperlink">
+          <img src="./assets/images/upperlink-logo.png" class="welcome-loader"  height="48" alt="Upperlink">
         </div>
       </div>
     </div>
+    <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
+    <!--<script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->
+    <script src="./assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="https://kit.fontawesome.com/939d4886cd.js" crossorigin="anonymous"></script>
   </app-root>
 </body>
 </html>

@@ -1,0 +1,94 @@
+.userCard .card-icon>i.material-icons {
+  font-size: 40px;
+  top: 20px;
+  transition: all .3s linear;
+}
+
+.userCard:hover .card-icon>i {
+  font-size: 50px;
+  top: 15px;
+  /*position: absolute;*/
+  transition: all .4s linear;
+}
+
+
+.auditCard .card-icon>i.material-icons {
+  font-size: 40px;
+  top: 20px;
+  transition: all .3s linear;
+}
+
+.auditCard:hover .card-icon>i {
+  font-size: 50px;
+  top: 15px;
+  /*position: absolute;*/
+  transition: all .4s linear;
+}
+
+.bankCard .card-icon>i.material-icons {
+  font-size: 40px;
+  top: 20px;
+  transition: all .3s linear;
+}
+
+.bankCard:hover .card-icon>i {
+  font-size: 50px;
+  top: 15px;
+  /*position: absolute;*/
+  transition: all .4s linear;
+}
+
+@media screen and (max-width: 540px) {
+  .card-footer .stats a {
+    font-size: 15px;
+  }
+
+  .card-header .card-category {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .card-footer .stats a {
+    font-size: 11px;
+  }
+
+  .card-header .card-category {
+    font-size: 12px;
+  }
+
+  .card .card-header .card-header-title {
+    font-size: 16px;
+  }
+
+  .card .card-body .table-responsive tr th{
+    font-size: 14px;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
+tr.example-element-header {
+  background: #efefef;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}

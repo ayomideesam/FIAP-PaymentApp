@@ -19,6 +19,9 @@ export class AuthService {
   public getUserDetails() {
     return this.cacheService.getSession(ENV.USERTOKEN);
   }
+  public getUserID() {
+    return this.cacheService.getSession(ENV.USERID);
+  }
   public getAllUserDetails() {
     return this.cacheService.getStorage(ENV.USERCOUNT);
   }

@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
           console.log(this.credentials);
           // console.log("tokenExpiry-Time", res.tokenExpiry);
           this.cacheService.setStorage(ENV.TOKENEXPIRYCOUNT, res.tokenExpiry);
+          this.cacheService.setStorage(ENV.USERID, res.id);
           this.bootstrapService.success('Authentication successful!');
           this.navigatorService.navigateUrl('/admin/dashboard');
-
         },error => {
         this.loading = false;
         console.info('Login Error', error);

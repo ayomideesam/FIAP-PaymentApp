@@ -88,6 +88,14 @@ export class UserService {
     );
   }
 
+  getUserByID(id: number): Observable<IResponse> {
+    return this.api.getRequest('user', '' + id).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
   toggleUsers(data: object) {
     return this.api.putRequest('user', 'approvereject', data).pipe(
       map((res: any) => {

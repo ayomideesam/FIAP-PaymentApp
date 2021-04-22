@@ -26,6 +26,8 @@ export class ManageBanksComponent implements OnInit {
     name: null,
     bankCode: null,
     nipCode: null,
+    accountPaymentUrl: null,
+    accountCallBackUrl: null,
     createdBy: null,
     creator: null
   };
@@ -55,7 +57,7 @@ export class ManageBanksComponent implements OnInit {
       this.utilService.startDatatable('listBanks');
     }, error => {
       console.log('Bank Response ', error);
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to get clients');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
       this.loadingTable = false;
     });
   }
@@ -66,6 +68,8 @@ export class ManageBanksComponent implements OnInit {
       name: null,
       bankCode: null,
       nipCode: null,
+      accountPaymentUrl: null,
+      accountCallBackUrl: null,
       createdBy: null,
       creator: null
     };
@@ -103,9 +107,7 @@ export class ManageBanksComponent implements OnInit {
   }
 
   public saveBank() {
-    if (!this.bank.id) {
-      return this.bootstrapNotifyService.info('Bank ID is required!');
-    } else if (!this.bank.name) {
+    if (!this.bank.name) {
       return this.bootstrapNotifyService.info('Bank Name is required!');
     } else if (!this.bank.bankCode) {
       return this.bootstrapNotifyService.info('Bank Code is required!');
@@ -119,14 +121,14 @@ export class ManageBanksComponent implements OnInit {
   }
   private createBank() {
     this.loading = true;
-    this.userService.createBank(this.bank).subscribe((res) => {
+    this.userService.createBank(this.bank).subscribe((res: any) => {
       this.loading = false;
       this.resetForm();
-      this.bootstrapNotifyService.success('Client created!');
+      this.bootstrapNotifyService.success(res.description, res.code);
       this.getBanks();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to create bank!');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   private updateBank() {
@@ -139,7 +141,7 @@ export class ManageBanksComponent implements OnInit {
       this.getBanks();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.message || 'Unable to update bank!');
+      this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
   public toggleView() {

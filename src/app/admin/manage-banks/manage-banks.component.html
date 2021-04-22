@@ -86,11 +86,6 @@
               <div class="toolbar">
                 {{createdDisplay.title}}
               </div>
-              <div class="form-group bmd-form-group mb-3 mt-3">
-                <label for="bankID" class="">ID *</label>
-                <input type="number" class="form-control" id="bankID" required name="id"
-                       [(ngModel)]="bank.id" [ngModelOptions]="{standalone: true}">
-              </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="NAME" class="">Bank Name *</label>
                 <input type="text" class="form-control" id="NAME" required name="name"
@@ -102,15 +97,26 @@
                        [(ngModel)]="bank.bankCode" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
-                <label for="nipCODE" class="">Bank Code *</label>
+                <label for="nipCODE" class="">Bank NIP Code *</label>
                 <input type="email" class="form-control" id="nipCODE" [readonly]="updateMode" required name="nipCode"
                        [(ngModel)]="bank.nipCode" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="paymentUrl" class="">Bank Payment Url</label>
+                <input type="email" class="form-control" id="paymentUrl" name="accountPaymentUrl"
+                       [(ngModel)]="bank.accountPaymentUrl" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group bmd-form-group mb-3">
+                <label for="callBackUrl" class="">Bank Call Back Url</label>
+                <input type="email" class="form-control" id="callBackUrl" name="accountCallBackUrl"
+                       [(ngModel)]="bank.accountCallBackUrl" [ngModelOptions]="{standalone: true}">
               </div>
 
               <div class="category form-category">* Required fields</div>
             </div>
             <div class="card-footer ml-auto mr-auto justify-content-center">
-              <button type="submit" class="btn btn-info" [disabled]="!bank.id || !bank.name || !bank.bankCode || !bank.nipCode || loading">{{createdDisplay?.btnTxt}}
+              <button type="submit" class="btn btn-info"
+                      [disabled]="!bank.name || !bank.bankCode || !bank.nipCode ||  loading">{{createdDisplay?.btnTxt}}
                 <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
                 <div class="ripple-container"></div>
               </button>

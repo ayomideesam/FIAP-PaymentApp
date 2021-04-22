@@ -7,12 +7,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from './shared/modules/core/core.module';
 import {SharedModule} from './shared/modules/shared/shared.module';
 import {FormsModule} from "@angular/forms";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {HighchartsChartModule} from "highcharts-angular";
 
 @NgModule({
   declarations: [
     AppComponent,
-    landingRouting.components,
+    landingRouting.components
+
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoreModule,
     SharedModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule,
+    HighchartsChartModule
   ],
   providers: [landingRouting.providers],
   bootstrap: [AppComponent]

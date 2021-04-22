@@ -15,6 +15,16 @@ import {FooterComponent} from '../../layout/dashboard/footer/footer.component';
 import {HeaderComponent} from '../../layout/dashboard/header/header.component';
 import {NotificationService} from '../../../services/notificationServices/notification.service';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatMenuModule} from "@angular/material/menu";
+import {HighchartsChartModule} from "highcharts-angular";
+import {AreaComponent} from "../../layout/dashboard/area/area.component";
+import {TransactionTablesComponent} from '../../layout/dashboard/transaction-tables/transaction-tables.component';
+import {MatCardModule} from "@angular/material/card";
+import {PieComponent} from '../../layout/dashboard/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +32,10 @@ import {NgSelectModule} from '@ng-select/ng-select';
     SidebarComponent,
     FooterComponent,
     ChangePasswordComponent,
-    HeaderComponent
+    HeaderComponent,
+    AreaComponent,
+    TransactionTablesComponent,
+    PieComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +43,14 @@ import {NgSelectModule} from '@ng-select/ng-select';
     NgSelectModule,
     ReactiveFormsModule,
     RouterModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    HighchartsChartModule,
+    MatCardModule
+
   ],
   providers: [
     EventsService,
@@ -49,7 +70,10 @@ import {NgSelectModule} from '@ng-select/ng-select';
     ChangePasswordComponent,
     NgSelectModule,
     ReactiveFormsModule,
-    HeaderComponent
+    HeaderComponent,
+    AreaComponent,
+    TransactionTablesComponent,
+    PieComponent
     ]
 })
 export class SharedModule { }

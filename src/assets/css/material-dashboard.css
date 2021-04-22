@@ -1287,6 +1287,10 @@ pre code {
 }
 
 @media screen and (max-width: 1024px) {
+  /*.row {
+    margin-top: 12%;
+  }*/
+
   .navbar-brand img{
     width: 330px;
   }
@@ -1314,7 +1318,23 @@ pre code {
   }
 }
 
+@media screen and (max-width: 600px) {
+  /*.row {
+    margin-top: 15%;
+  }*/
+}
+
+@media screen and (max-width: 540px) {
+  /*.row {
+    margin-top: 10%;
+  }*/
+}
+
 @media screen and (max-width: 411px) {
+  /*.row  {
+    margin-top: 20%;
+  }*/
+
   .navbar-brand img{
     width: 250px;
   }
@@ -1340,7 +1360,16 @@ pre code {
   }
 }
 
+@media screen and (max-width: 414px) {
+  /*.row  {
+    margin-top: 22%;
+  }*/
+}
 @media screen and (max-width: 375px) {
+  /*.row  {
+    margin-top: 22%;
+  }*/
+
   .ForgotPassClass {
     margin: 12px -69px 7px 5px;
   }
@@ -1359,6 +1388,10 @@ pre code {
 }
 
 @media screen and (max-width: 360px) {
+  /*.row  {
+    margin-top: 24%;
+  }*/
+
   .ForgotPassClass {
     margin: 12px -50px 7px 5px;
   }
@@ -1377,6 +1410,10 @@ pre code {
 }
 
 @media screen and (max-width: 320px) {
+  /*.row  {
+    margin-top: 19%;
+  }*/
+
   div .dt-buttons {
     float: right;
     margin: 0 26px 0 15px;
@@ -1402,9 +1439,36 @@ pre code {
   .text-rose{
     font-size: 12px;
   }
+  .mt-4, .my-4 {
+    margin-top: 3.5rem !important;
+  }
 }
 
 @media screen and (max-width: 280px) {
+  .container-fluid .navbar-wrapper{
+    width: 31%;
+    margin-left: -15px;
+  }
+  .container-fluid .navbar-toggler{
+    width: 10%;
+  }
+  .container-fluid .header_dropdown{
+    width: 22%;
+  }
+
+  .u-header-right[_ngcontent-kfm-c17] {
+    margin: 0 3px;
+  }
+
+  .admin_content a img {
+    width: 40px;
+    background-size: cover;
+    background-position: top center;
+  }
+
+  /*.row  {
+    margin-top: 23%;
+  }*/
 
   .text-rose{
     font-size: 11px;
@@ -13493,6 +13557,7 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar.navbar-transparent {
   background-color: transparent !important;
+  /*background-color: #F8F9F7 !important;;*/
   box-shadow: none;
 }
 
@@ -14858,9 +14923,11 @@ label {
 
 .footer {
   padding: 0.9375rem 0;
+  width: 99%;
   text-align: center;
   /*display: -webkit-flex;*/
   bottom: 0;
+  margin-top: -13px;
   /* Safari */
   /* Safari 6.1+ */
   /*display: flex;*/
@@ -14878,7 +14945,7 @@ label {
 
 .footer ul li a {
   color: inherit;
-  padding: 0.9375rem;
+  padding: 25px 40px 10% 11px;
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -14935,13 +15002,13 @@ label {
 }
 
 .footer .copyright {
-  padding: 15px 0;
+  padding: 25px 45px 1% 49px;
 }
 
 .footer .copyright .material-icons {
   font-size: 18px;
   position: relative;
-  top: 3px;
+  /*top: 3px;*/
 }
 
 .footer .pull-center {
