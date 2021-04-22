@@ -76,8 +76,11 @@
 
     <mat-divider></mat-divider>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="17px" class="stats-cards" style="margin:15px 0;">
-      <mat-card fxFlex="60">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayout.lt-md="column" fxLayoutAlign="space-around center"
+         fxLayoutGap="10px"
+         class="stats-cards top-container-card"
+         style="margin:15px 0;">
+      <mat-card fxFlex="60" class="showcase-table">
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource">
             <!-- Position Column -->
@@ -113,7 +116,7 @@
         <!--<app-transaction-tables></app-transaction-tables>-->
       </mat-card>
 
-      <mat-card fxFlex="40">
+      <mat-card fxFlex="40" class="top-box">
         <app-widget-pie [data]="pieChart"></app-widget-pie>
       </mat-card>
     </div>

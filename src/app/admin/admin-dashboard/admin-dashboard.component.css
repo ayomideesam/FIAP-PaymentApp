@@ -38,6 +38,81 @@
   transition: all .4s linear;
 }
 
+.mat-card {
+   padding: 0;
+  border-radius: 5px;
+}
+
+.mat-card .top-box{
+   padding: 10px;
+}
+
+/*!* Top Container *!
+.top-container-card {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    'showcase-table showcase-table top-box';
+}
+
+.showcase-table {
+  grid-area: showcase-table;
+}
+
+!* Top Box *!
+.top-box {
+  display: grid;
+}*/
+
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .top-container-card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .top-container-card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .top-container-card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+tr.example-element-header {
+  background: #efefef;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+
 @media screen and (max-width: 540px) {
   .card-footer .stats a {
     font-size: 15px;
@@ -64,31 +139,4 @@
   .card .card-body .table-responsive tr th{
     font-size: 14px;
   }
-}
-
-table {
-  width: 100%;
-}
-
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-
-
-tr.example-element-header {
-  background: #efefef;
-}
-
-tr.example-element-row:not(.example-expanded-row):hover {
-  background: whitesmoke;
-}
-
-tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
-}
-
-.example-element-row td {
-  border-bottom-width: 0;
 }

@@ -14923,7 +14923,7 @@ label {
 
 .footer {
   padding: 0.9375rem 0;
-  width: 99%;
+  width: 100%;
   text-align: center;
   /*display: -webkit-flex;*/
   bottom: 0;
@@ -14941,11 +14941,12 @@ label {
 
 .footer ul li {
   display: inline-block;
+  /*margin-right: -26px;*/
 }
 
 .footer ul li a {
   color: inherit;
-  padding: 26px 40px 3% 13px;
+  /*padding: 26px 40px 3% 13px;*/
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -15002,7 +15003,7 @@ label {
 }
 
 .footer .copyright {
-  padding: 25px 45px 1% 49px;
+  /*padding: 25px 45px 1% 53px;*/
 }
 
 .footer .copyright .material-icons {

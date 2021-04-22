@@ -180,11 +180,11 @@ url(./assets/img/theme/team-1.jpg); background-size: cover; background-position:
               {{currentUser?.firstName + " " + currentUser?.lastName}}
             </h5>
             <div class="h5 font-weight-300">
-              <i class="ni location_pin mr-2"></i>Software Developer
+              <i class="ni location_pin mr-2"></i>Software Engineer
             </div>
             <hr class="my-4" />
             <div class="h5 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i>Operations Department - Creative Tim Officer
+              <i class="ni business_briefcase-24 mr-2"></i>Operations Department - Full-Stack Developer
             </div>
             <div>
               <i class="ni education_hat mr-2"></i>Upperlink Limited
@@ -200,14 +200,14 @@ url(./assets/img/theme/team-1.jpg); background-size: cover; background-position:
               </div>
               <mat-divider></mat-divider>
               <div class="list-group-item">
-                <b class="float-left">Last Login Date</b>
+                <b class="float-left">Last Login</b>
                 <a class="float-right" *ngIf="currentUser">
                   {{currentUser?.lastLogin}}
                 </a>
               </div>
               <mat-divider></mat-divider>
               <div class="list-group-item">
-                <b class="float-left"> Password Changed On Date</b>
+                <b class="float-left"> Password Changed</b>
                 <a class="float-right" *ngIf="currentUser">
                   {{currentUser?.passwordChangedOn}}
                 </a>
@@ -279,7 +279,7 @@ url(./assets/img/theme/team-1.jpg); background-size: cover; background-position:
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Office Address</label>
                     <div id="input-address" class="form-control display-forms" *ngIf="currentUser">
-                      ASSBIFI House, 4 ASSBIFI Road, Central Business District, Alausa, Ikeja. Lagos.
+                      ASSBIFI House, Alausa, Ikeja. Lagos.
                     </div>
                   </div>
                 </div>
