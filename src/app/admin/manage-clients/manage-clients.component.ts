@@ -29,7 +29,7 @@ export class ManageClientsComponent implements OnInit {
     address: null,
     id: null,
     status: null,
-    loginStatus: null,
+    lockedDate: null,
     passwordExpired: null,
     passwordExpirationDaysRemaining: null,
     createdBy: null,
@@ -43,7 +43,10 @@ export class ManageClientsComponent implements OnInit {
     title: 'Create New User',
     btnTxt: 'Create User'
   };
-  closeResult: string;
+  closeResult = '';
+  private unlockEmail: any;
+  modalReference: any;
+
   constructor(private eventService: EventsService, private userService: UserService,
               private utilService: UtilService, private router: Router,
               private bootstrapNotifyService: BootstrapNotifyService, private cacheService: CacheService, private modalService: NgbModal) {
@@ -62,6 +65,7 @@ export class ManageClientsComponent implements OnInit {
     // this.getClients();
     // this.getClientTypes();
   }
+
   // public getClients(): void {
   public getUsers(): void {
     this.loadingTable  = true;
@@ -69,7 +73,7 @@ export class ManageClientsComponent implements OnInit {
     this.userService.getUsers().subscribe((res: any) => {
       // this.clients =  res.data.data;
       this.clients =  res.content;
-      this.cacheService.setStorage(ENV.USERCOUNT, res.count);
+      // this.cacheService.setStorage(ENV.USERCOUNT, res.count);
       // console.log('User Response', res);
       this.loadingTable = false;
       this.utilService.startDatatable('listUsers');
@@ -89,7 +93,7 @@ export class ManageClientsComponent implements OnInit {
       address: null,
       id: null,
       status: null,
-      loginStatus: null,
+      lockedDate: null,
       passwordExpired: null,
       passwordExpirationDaysRemaining: null,
       createdBy: null,
@@ -135,12 +139,13 @@ export class ManageClientsComponent implements OnInit {
       this.createClient();
     }
   }
+
   private createClient() {
     this.loading = true;
-    this.userService.createClient(this.client).subscribe((res) => {
+    this.userService.createClient(this.client).subscribe((res: any) => {
       this.loading = false;
       this.resetForm();
-      this.bootstrapNotifyService.success('Client created!');
+      this.bootstrapNotifyService.success(res.description, res.code);
       // this.getClients();
       this.getUsers();
     }, error => {
@@ -148,6 +153,7 @@ export class ManageClientsComponent implements OnInit {
       this.bootstrapNotifyService.error(error.error.description, error.error.code);
     });
   }
+
   private updateClient() {
     this.loading = true;
     this.userService.updateClient(this.client, this.updateMode.id).subscribe((res: any) => {
@@ -191,13 +197,38 @@ export class ManageClientsComponent implements OnInit {
     document.getElementById('clientPhoneNumber').setAttribute('value', client.phoneNumber);
     document.getElementById('clientAddress').setAttribute('value', client.address);
     document.getElementById('clientStatus').setAttribute('value', client.status);
-    document.getElementById('clientLoginStatus').setAttribute('value', client.loginStatus);
-    document.getElementById('clientPasswordExpired').setAttribute('value', client.passwordExpired);
-    document.getElementById('clientPasswordExpirationDaysRemaining').setAttribute('value', client.passwordExpirationDaysRemaining);
+    document.getElementById('clientLockDate').setAttribute('value', client.lockedDate);
     document.getElementById('clientCreatedBy').setAttribute('value', client.createdBy);
     document.getElementById('clientCreator').setAttribute('value', client.creator);
-    document.getElementById('clientLastUpdatedBy').setAttribute('value', client.lastUpdatedBy);
     document.getElementById('clientApproved').setAttribute('value', client.approved);
+  }
+
+  unlockUser(contentUnlock, client) {
+    this.unlockEmail = client.email;
+    this.modalReference =  this.modalService.open(contentUnlock, {
+      backdrop: 'static',
+      size: 'sm'
+    });
+  }
+
+  unlockUserAccount() {
+    this.loading = true;
+    const req = {
+      email: this.unlockEmail
+    };
+    this.userService.unlockUserAccount(req).subscribe((res: any) => {
+        this.loading = false;
+        this.modalReference.close();
+        this.getUsers();
+        if (res.code == '200') {
+          return this.bootstrapNotifyService.success(res.description, res.code);
+        }
+        this.bootstrapNotifyService.success(res.description, res.code);
+      }, error => {
+        this.loading =  false;
+        this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      }
+    );
   }
 
   private getDismissReason(reason: any): string {

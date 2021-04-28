@@ -14,9 +14,9 @@ import {UtilService} from '../../services/utilService/util.service';
 })
 export class ResetPasswordComponent implements OnInit {
   public credentials = {
-    password_confirmation: null,
-    password: null,
-    token: null,
+    email: null,
+    activationCode: null,
+    password: null
   };
   loaders = {
     loading: false
@@ -28,27 +28,27 @@ export class ResetPasswordComponent implements OnInit {
               private utilService: UtilService) {
   }
   ngOnInit(): void {
-    this.credentials.token = this.route.snapshot.paramMap.get('token');
+    this.credentials.email = this.route.snapshot.paramMap.get('email');
+    this.credentials.activationCode = this.route.snapshot.paramMap.get('activationCode');
     this.utilService.setFullPageBackgroundImage();
   }
 
   public resetPassword() {
-    if (!this.credentials.password_confirmation || !this.credentials.password) {
+    if (!this.credentials.password) {
       this.bootstrapNotify.info('Provide new password!');
-    } else if (this.credentials.password_confirmation === this.credentials.password) {
-      this.bootstrapNotify.info('The two password must match!');
     } else {
-            this.loaders.loading = true;
-            this.userService.resetPassword(this.credentials).subscribe((response: IResponse) => {
-              console.log('Response', response);
-              this.loaders.loading = false;
-              this.bootstrapNotify.success(response.message || 'Please proceed to login');
-              this.navigatorService.navigateUrl('/');
-            }, error => {
-              this.bootstrapNotify.error(error.error.message || 'Unable to reset password');
-              this.loaders.loading = false;
-              console.info('Error => ', error);
-            });
+      this.loaders.loading = true;
+      this.userService.resetPassword(this.credentials).subscribe((response: any) => {
+        console.log('Set_Password_Response', response);
+        this.loaders.loading = false;
+        this.bootstrapNotify.success(response.description, response.code);
+        this.navigatorService.navigateUrl('/');
+      }, error => {
+        this.bootstrapNotify.error(error.error.description, error.error.code);
+        this.loaders.loading = false;
+        console.info('Set_Password_Error => ', error);
+      });
     }
   }
 }
+

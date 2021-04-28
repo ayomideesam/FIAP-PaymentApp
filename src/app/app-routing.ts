@@ -18,14 +18,14 @@ import {AuditTrailComponent} from "./admin/audit-trail/audit-trail.component";
 import {ManageBanksComponent} from "./admin/manage-banks/manage-banks.component";
 import {ViewBankComponent} from "./admin/manage-banks/view-bank.component";
 import {ProfilesComponent} from "./admin/profiles/profiles.component";
-
+import {UpdatePasswordComponent} from './landing/update-password/update-password.component';
 
 const landingRoutes: Routes = [
   {path: '', component: LoginComponent, pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
-  {path: 'reset-password/:token', component: ResetPasswordComponent},
-
+  {path: 'reset-password/:email/:activationCode', component: UpdatePasswordComponent},
+  {path: 'reset-password/:email/:activationCode', component: ResetPasswordComponent},
   {path: 'client', loadChildren: () => import('./shared/modules/user/user.module').then(m => m.UserModule)},
 
   {path: 'admin', loadChildren: () => import('./shared/modules/admin/admin.module').then(m => m.AdminModule)},
@@ -40,7 +40,8 @@ export const landingRouting: IRouting = {
     ForgotPasswordComponent,
     LHeaderComponent,
     LFooterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UpdatePasswordComponent
   ],
   entryComponent: [],
   providers: []

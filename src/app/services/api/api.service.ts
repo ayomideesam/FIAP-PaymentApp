@@ -26,29 +26,31 @@ export class ApiService extends RestfulHttpService {
   // intercept and format all possible http error.
   private static errorHandler(error: any) {
     try {
-      if (error.error.code === 401 && (error.error.msg.includes('Token timeout')
-        || error.error.msg.includes('Access denied') || error.error.msg.includes('Unauthenticated'))) {
+      if ((error.error.code === 1008 || error.error.status === 401) && (error.error.description.includes('Invalid' +
+        ' token or token expired')
+        || error.error.statusText.includes('Unauthorized') || error.error.description.includes('Unauthenticated'))) {
         sessionStorage.clear();
         localStorage.clear();
-        return throwError(error.error || { msg: 'Unknown error occurred' });
+        return throwError(error.error || { description: 'Invalid token or token expired' });
       }
-      return throwError(error || { msg: 'Unknown error occurred' });
+      return throwError(error || { description: 'Invalid token or token expired' });
     } catch (error) {
-      return throwError(error || { msg: 'Unknown error occurred' });
+      return throwError(error || { description: 'Invalid token or token expired' });
     }
   }
   // in case of Login: this will art as an interceptor to store the token return and possible login user data
   private decode(res: any, auth?: string | null) {
     const data = res;
     if (res) {
-      console.log('res', res, auth);
+      // console.log('API_res', res, auth);
       if (auth && auth.match('login')) {
         sessionStorage.setItem(env.TOKEN, JSON.stringify(data.accessToken));
         console.log('MyToken', data.accessToken);
         sessionStorage.setItem(env.USERTOKEN, JSON.stringify(data));
-        const tokenExpiry = Date.now() + 2000; // 2 seconds
-        sessionStorage.setItem(env.TOKENEXPIRYCOUNT, JSON.stringify(tokenExpiry));
-        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(Date.now()));
+        // const tokenExpiry = Date.now() + 2000; // 2 seconds
+        sessionStorage.setItem(env.TOKENEXPIRYCOUNT, JSON.stringify(data.tokenTime));
+        sessionStorage.setItem(env.DATE_NOW, JSON.stringify(new Date()));
+        // sessionStorage.setItem(env.DATE_NOW, JSON.stringify(Date.now()));
       }
       return res;
     } else {
@@ -159,7 +161,7 @@ export class ApiService extends RestfulHttpService {
           );
         })
       ).pipe(catchError(ApiService.errorHandler), map((res) => {
-          console.log('getRequest2', res);
+          // console.log('getRequest2', res);
           return res;
         })
       );

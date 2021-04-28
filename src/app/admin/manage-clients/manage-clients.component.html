@@ -35,7 +35,7 @@
                     <th class="font-weight-bold">Email</th>
                     <th class="font-weight-bold">Phone Number</th>
                     <th class="font-weight-bold">Address</th>
-                    <th class="disabled-sorting text-center no-sort" width="25%"></th>
+                    <th class="font-weight-bold disabled-sorting text-left no-sort actionLeftClass" width="25%">Action</th>
                   </tr>
                   </thead>
                   <tfoot>
@@ -46,7 +46,7 @@
                     <th class="font-weight-bold">Email</th>
                     <th class="font-weight-bold">Phone Number</th>
                     <th class="font-weight-bold">Address</th>
-                    <th class="text-center"></th>
+                    <th class="font-weight-bold text-left actionLeftClass">Action</th>
                   </tr>
                   </tfoot>
                   <tbody *ngIf="clients.length > 0">
@@ -59,15 +59,19 @@
                     <td>{{client?.phoneNumber}}</td>
                     <!--<td>{{client?.client_type?.name}}</td>-->
                     <td>{{client?.address}}</td>
-                    <td class="text-center">
+                    <td class="text-left actionClass">
                       <a href="javascript:void(0)" (click)="editClient(client)"
-                         class="btn btn-link btn-warning btn-just-icon edit">
+                         class="btn btn-link btn-warning btn-link edit">
                         <i class="material-icons">edit</i>
                         <div class="ripple-container"></div>
                       </a>
                       <a href="javascript:void(0)" (click)="openDetails(contentDetails, client)" class="btn btn-link btn-primary">
                         <i class="material-icons">visibility</i>
-                          View Users
+                        <div class="ripple-container"></div>
+                      </a>
+                      <a href="javascript:void(0)" *ngIf="client?.lockedDate"
+                         (click)="unlockUser(contentUnlock, client)" class="btn btn-link btn-primary">
+                        <i class="material-icons">lock</i>
                         <div class="ripple-container"></div>
                       </a>
                     </td>
@@ -109,7 +113,7 @@
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="email" class="">Client Email Address *</label>
-                <input type="email" class="form-control" id="email" [readonly]="updateMode" required name="email" [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
+                <input type="email" class="form-control" id="email"  name="email" [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group bmd-form-group mb-3">
                 <label for="phone" class="">Client Phone Number *</label>
@@ -200,21 +204,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label>Client Login Status</label>
+            <label>Client Locked Date</label>
             <div class="input-group">
-              <input id="clientLoginStatus" class="form-control" readonly>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Password Expired </label>
-            <div class="input-group">
-              <input id="clientPasswordExpired" class="form-control" readonly>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Password Expiration Days Remaining</label>
-            <div class="input-group">
-              <input id="clientPasswordExpirationDaysRemaining" class="form-control" readonly>
+              <input id="clientLockDate" class="form-control" readonly>
             </div>
           </div>
           <div class="form-group">
@@ -227,12 +219,6 @@
             <label>Client Creator</label>
             <div class="input-group">
               <input id="clientCreator" class="form-control" readonly>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Client Last Updated By</label>
-            <div class="input-group">
-              <input id="clientLastUpdatedBy" class="form-control" readonly>
             </div>
           </div>
           <div class="form-group">
@@ -251,5 +237,64 @@
     </ng-template>
     <!--View Users ENDS Here-->
 
+    <!--Unlock Users Modal Starts-->
+    <ng-template #contentUnlock let-modal id="UnlockUser">
+     <div class="sweet-alert showSweetAlert visible" data-custom-class="" data-has-cancel-button="true"
+          data-has-confirm-button="true" data-allow-outside-click="false" data-has-done-function="true" data-animation="pop" data-timer="null" style="display: block; margin-top: -169px;">
+      <div class="sa-icon sa-error" style="display: none;">
+        <span class="sa-x-mark">
+          <span class="sa-line sa-left"></span>
+          <span class="sa-line sa-right"></span>
+        </span>
+      </div>
+      <div class="sa-icon sa-warning pulseWarning" style="display: block;">
+        <span class="sa-body pulseWarningIns"></span>
+        <span class="sa-dot pulseWarningIns"></span>
+      </div>
+      <div class="sa-icon sa-info" style="display: none;">
+      </div>
+      <div class="sa-icon sa-success" style="display: none;">
+        <span class="sa-line sa-tip"></span>
+        <span class="sa-line sa-long"></span>
+        <div class="sa-placeholder"></div>
+        <div class="sa-fix"></div>
+      </div>
+      <div class="sa-icon sa-custom" style="display: none;">
+      </div>
+      <form novalidate>
+        <h2>Are you sure?</h2>
+        <p style="display: block;">You are about to Unlock this User</p>
+        <fieldset>
+          <input type="text" tabindex="3" placeholder="">
+          <div class="sa-input-error"></div>
+        </fieldset>
+        <div class="sa-error-container">
+          <div class="icon">!</div>
+          <p>Not valid!</p>
+        </div>
+        <div class="sa-button-container">
+          <button (click)="modal.dismiss('Cross click')" type="button" class="cancel" tabindex="2" style="display: inline-block;">
+            No, cancel please!
+          </button>
+          <div class="sa-confirm-button-container">
+            <button (click)="unlockUserAccount()" data-dismiss="createLabel" type="button" class="confirm"
+            tabindex="1" style="display:
+            inline-block;
+            background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;">
+              Yes, Unlock User!
+              <i class="fa fa-spin fa-spinner" style="color: #0a6ebd" *ngIf="loading">
+              </i>
+            </button>
+            <div class="la-ball-fall">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </form>
+     </div>
+    </ng-template>
+    <!--Unlock Users ENDS Here-->
   </div>
 </div>

@@ -22,9 +22,18 @@ export class GuardService implements CanActivate {
        return false;
      }
   }
-  autoLogout() {
 
-  }
+  /*autoLogout(): boolean {
+    const timer =  this.cacheService.getSession(ENV.TOKENEXPIRYCOUNT);
+    console.log('time',timer );
+    if (timer && (Date.now() < timer)) {
+      this.logOut();
+    } else {
+      this.router.navigate([ '/' ]); // then ask user to login
+      this.logOut();
+      return false;
+    }
+  }*/
 
   /**
    * Log out from system

@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           console.log(this.credentials);
           // console.log("tokenExpiry-Time", res.tokenExpiry);
-          this.cacheService.setStorage(ENV.TOKENEXPIRYCOUNT, res.tokenExpiry);
+          this.cacheService.setStorage(ENV.TOKENEXPIRYCOUNT, res.tokenTime);
+          this.cacheService.setSession(ENV.TOKENEXPIRYCOUNT, res.tokenTime);
           this.cacheService.setStorage(ENV.USERID, res.id);
           this.bootstrapService.success('Authentication successful!');
           this.navigatorService.navigateUrl('/admin/dashboard');

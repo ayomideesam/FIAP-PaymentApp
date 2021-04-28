@@ -38,8 +38,8 @@ export class AuthService {
     const token =  this.cacheService.getSession(ENV.TOKEN);
     // console.log('Login Token', token);
     const user =  this.cacheService.getSession(ENV.USERTOKEN);
-    const expireDate =  this.cacheService.getSession(ENV.TOKENEXPIRYCOUNT);
     const recentDate =  this.cacheService.getStorage(ENV.DATE_NOW);
+    const expireDate =  this.cacheService.getSession(ENV.TOKENEXPIRYCOUNT);
     /*const role =  this.cacheService.getSession(ENV.ROLE);
     if (!token || !user || !role) {
       return false;
@@ -56,14 +56,6 @@ export class AuthService {
       return true;
     }
   }
-
-  public autoLogout() {
-    const timer =  this.cacheService.getSession(ENV.TOKENEXPIRYCOUNT);
-    if (timer && (Date.now() > timer)) {
-      this.logOut();
-    }
-  }
-
 
   public logOut() {
     this.signOut();

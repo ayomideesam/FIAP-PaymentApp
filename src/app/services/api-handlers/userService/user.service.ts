@@ -48,12 +48,21 @@ export class UserService {
     );
   }
   updateUserPassword(data: any): Observable<IResponse> {
-    return this.api.postRequest('user', 'updatepassword' , data).pipe(
+    return this.api.putRequest('user', 'updatepassword' , data).pipe(
       map((res: IResponse) => {
         return res;
       })
     );
   }
+
+  unlockUserAccount(data: any): Observable<IResponse> {
+    return this.api.putRequest('user', 'unlock' , data).pipe(
+      map((res: IResponse) => {
+        return res;
+      })
+    );
+  }
+
   changeUserPassword(data: any): Observable<IResponse> {
     return this.api.putRequest('user', 'changepassword' , data).pipe(
       map((res: IResponse) => {
@@ -75,6 +84,7 @@ export class UserService {
       })
     );
   }
+
   getClientTypes(): Observable<IResponse> {
     return this.api.getRequest('users', '').pipe( map((res: any) => {
         return res;
