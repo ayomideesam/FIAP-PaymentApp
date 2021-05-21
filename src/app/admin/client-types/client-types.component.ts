@@ -39,8 +39,8 @@ export class ClientTypesComponent implements OnInit {
       this.loadingTable = false;
       this.utilService.startDatatable('listClientTypes');
     }, error => {
-      console.log('E ', error);
-      this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      // console.log('E ', error);
+      this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
       this.loadingTable = false;
     });
   }
@@ -81,7 +81,7 @@ export class ClientTypesComponent implements OnInit {
       this.getClientTypes();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
     });
   }
   private updateClientType() {
@@ -94,7 +94,7 @@ export class ClientTypesComponent implements OnInit {
       this.getClientTypes();
     }, error => {
       this.loading =  false;
-      this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
     });
   }
   public deleteType(type: any) {
@@ -103,7 +103,7 @@ export class ClientTypesComponent implements OnInit {
         this.bootstrapNotifyService.success('Client type deleted!');
         this.getClientTypes();
       }, error => {
-        this.bootstrapNotifyService.error(error.error.description, error.error.code);
+        this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
       });
     });
   }

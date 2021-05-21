@@ -10,11 +10,13 @@ import {FormsModule} from "@angular/forms";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HighchartsChartModule} from "highcharts-angular";
+// import { PluginComponent } from './shared/layout/dashboard/plugin/plugin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     landingRouting.components
+    // PluginComponent
 
   ],
   imports: [

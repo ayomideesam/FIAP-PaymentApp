@@ -57,6 +57,20 @@ export class AuthService {
     }
   }
 
+  public checkSession(): boolean {
+    const accessToken =  this.cacheService.getSession(ENV.TOKEN);
+    const userData =  this.cacheService.getSession(ENV.USERTOKEN);
+    const recentTime =  this.cacheService.getStorage(ENV.DATE_NOW);
+    const logOutTime =  this.cacheService.getSession(ENV.LOGOUTTIME);
+    if (!accessToken || !userData) {
+      return false;
+    } else if (new Date(recentTime) == new Date(logOutTime)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   public logOut() {
     this.signOut();
     this.cacheService.clearSession();

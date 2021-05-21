@@ -12,6 +12,7 @@ export class GuardService implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.checkLogin();
+    return this.checkSession();
   }
   checkLogin(): boolean {
      if (this.authService.checkLogin()) {
@@ -23,8 +24,8 @@ export class GuardService implements CanActivate {
      }
   }
 
-  /*autoLogout(): boolean {
-    const timer =  this.cacheService.getSession(ENV.TOKENEXPIRYCOUNT);
+  checkSession(): boolean {
+    /*const timer =  this.cacheService.getSession(ENV.TOKENEXPIRYCOUNT);
     console.log('time',timer );
     if (timer && (Date.now() < timer)) {
       this.logOut();
@@ -32,8 +33,16 @@ export class GuardService implements CanActivate {
       this.router.navigate([ '/' ]); // then ask user to login
       this.logOut();
       return false;
+    }*/
+    if (this.authService.checkSession()) {
+      return true;
+    } else {
+      this.router.navigate([ '/' ]); // then ask user to login
+      this.logOut();
+      return false;
     }
-  }*/
+
+  }
 
   /**
    * Log out from system

@@ -25,6 +25,8 @@ import {AreaComponent} from "../../layout/dashboard/area/area.component";
 import {TransactionTablesComponent} from '../../layout/dashboard/transaction-tables/transaction-tables.component';
 import {MatCardModule} from "@angular/material/card";
 import {PieComponent} from '../../layout/dashboard/pie/pie.component';
+import {ReconfirmPasswordComponent} from "../../components/reconfirm-password/reconfirm-password.component";
+import {PluginComponent} from '../../layout/dashboard/plugin/plugin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import {PieComponent} from '../../layout/dashboard/pie/pie.component';
     HeaderComponent,
     AreaComponent,
     TransactionTablesComponent,
-    PieComponent
+    PieComponent,
+    ReconfirmPasswordComponent,
+    PluginComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +77,9 @@ import {PieComponent} from '../../layout/dashboard/pie/pie.component';
     HeaderComponent,
     AreaComponent,
     TransactionTablesComponent,
-    PieComponent
+    PieComponent,
+    ReconfirmPasswordComponent,
+    PluginComponent
     ]
 })
 export class SharedModule { }

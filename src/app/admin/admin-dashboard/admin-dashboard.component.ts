@@ -83,8 +83,8 @@ export class AdminDashboardComponent implements OnInit {
       // this.clients =  res.data.data;
       this.clients =  res.count;
     }, error => {
-      console.log('User Error', error);
-      this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      // console.log('User Error', error);
+      this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
     });
   }
 
@@ -92,8 +92,8 @@ export class AdminDashboardComponent implements OnInit {
     this.userService.getBanks().subscribe((res: any) => {
       this.banks =  res.count;
     }, error => {
-      console.log('Bank Response ', error);
-      this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      // console.log('Bank Response ', error);
+      this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
     });
   }
   public getAuditLog(): void {
@@ -101,8 +101,8 @@ export class AdminDashboardComponent implements OnInit {
       // this.clients =  res.data.data;
       this.audits =  res.count;
     }, error => {
-      console.log('Audit Error', error);
-      this.bootstrapNotifyService.error(error.error.description, error.error.code);
+      // console.log('Audit Error', error);
+      this.bootstrapNotifyService.error(error?.error?.description, error?.error?.code);
     });
   }
 }

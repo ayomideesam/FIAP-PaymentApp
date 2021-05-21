@@ -1,4 +1,4 @@
-.actionClass {
+/*.actionClass {
   padding-left: 5% !important;
 }
 .actionLeftClass {
@@ -6,8 +6,19 @@
 }
 .actionClass a{
   padding: 4%;
+}*/
+
+.gridWrapper {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
+/*@media (max-width: 767px) {
+  table.dataTable>tbody>tr.child ul.dtr-details {
+    text-align: left;
+  }
+}*/
 /*.modal-background {
   background: linear-gradient(to right, red, orange) !important;
   padding: 2px;
@@ -70,13 +81,21 @@ body.stop-scrolling {
   display: none;
   z-index: 99999;
 }
+
 @media all and (max-width: 540px) {
   .sweet-alert {
     width: auto;
     margin-left: 0;
     margin-right: 0;
-    left: 15px;
-    right: 15px; } }
+    left: 37px;
+    right: 37px;
+    top: -73px;
+  }
+
+  .tableRow .SN {
+    width: 10px;
+  }
+}
 .sweet-alert h2 {
   color: #575757;
   font-size: 30px;

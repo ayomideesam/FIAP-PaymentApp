@@ -23632,6 +23632,86 @@ table.dataTable>tbody>tr.child ul.dtr-details {
   padding: 0;
 }
 
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 767px) {
+  table.dataTable>tbody>tr.child ul.dtr-details {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  /*table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(3) span.dtr-data {
+    margin-top: -20px;
+  }*/
+  table.dataTable>tbody>tr.child span.dtr-data {
+    font-size: 13px;
+  }
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data {
+    width: 45%;
+  }
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data a {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 375px) {
+  /*table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(3) span.dtr-data {
+    margin-top: -20px;
+  }*/
+  table.dataTable>tbody>tr.child span.dtr-data {
+    font-size: 13px;
+  }
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data {
+    width: 45%;
+  }
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data a {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(3) span.dtr-data {
+    margin-top: -20px;
+  }
+  table.dataTable>tbody>tr.child span.dtr-data {
+    font-size: 13px;
+  }
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data {
+    width: 45%;
+  }
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data a {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  table.dataTable>tbody>tr.child span.dtr-title {
+    font-size: 10px;
+  }
+
+  table.dataTable>tbody>tr.child span.dtr-data {
+    font-size: 10px;
+  }
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(3) span.dtr-data {
+    margin-top: -20px;
+  }
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data {
+    width: 40%;
+  }
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:nth-child(6) span.dtr-data a {
+    padding: 5px;
+  }
+}
+
 table.dataTable>tbody>tr.child ul.dtr-details>li {
   border-bottom: 1px solid #efefef;
   padding: 0.5em 0;

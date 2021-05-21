@@ -6,6 +6,7 @@ import {BootstrapNotifyService} from '../../services/bootstrap-notify/bootstrap-
 import {UtilService} from '../../services/utilService/util.service';
 import {IResponse} from '../../interfaces/iresponse';
 import {CacheService} from '../../services/cacheService/cache.service';
+import {LoginService} from "../../services/login.service";
 declare const $: any;
 
 @Component({
@@ -22,46 +23,15 @@ export class LoginComponent implements OnInit {
   public EMAIL_VALIDATION =  ENV.EMAIL_VALIDATION;
   constructor(private userService: UserService, private navigatorService: NavigatorService,
               private cacheService: CacheService,
-              private bootstrapService: BootstrapNotifyService, private utilService: UtilService) {}
+              private bootstrapService: BootstrapNotifyService, private utilService: UtilService, private loginService: LoginService) {}
 
   ngOnInit() {
     this.utilService.setFullPageBackgroundImage();
   }
-   public loginProcess() {
-     /* if (!this.credentials.email || !this.credentials.password) {
-       return this.bootstrapService.error('Email and password is required!');
-     } else if (!this.credentials.email.match(this.EMAIL_VALIDATION)) {
-       return this.bootstrapService.error('Invalid email address!');
-     } else {
-       this.loading = true;
-       /*this.userService.auth(this.credentials).subscribe((response: IResponse) => {
-         this.loading = false;
-         console.log(this.credentials);
-         this.bootstrapService.success('Authentication successful!');
-         const loginType = response.data.user.login_type.split('App\\Models\\')[1];
-         this.cacheService.setSession(ENV.ROLE, loginType.toLowerCase());
-         if (loginType.toLowerCase() === 'admin') {
-           this.navigatorService.navigateUrl('/admin/dashboard');
-         } else {
-           this.navigatorService.navigateUrl('/client/manage-documents');
-         }
-       }, */
-      this.userService.auth(this.credentials).subscribe((res: any) => {
-          this.loading = false;
-          console.log(this.credentials);
-          // console.log("tokenExpiry-Time", res.tokenExpiry);
-          this.cacheService.setStorage(ENV.TOKENEXPIRYCOUNT, res.tokenTime);
-          this.cacheService.setSession(ENV.TOKENEXPIRYCOUNT, res.tokenTime);
-          this.cacheService.setStorage(ENV.USERID, res.id);
-          this.bootstrapService.success('Authentication successful!');
-          this.navigatorService.navigateUrl('/admin/dashboard');
-        },error => {
-        this.loading = false;
-        console.info('Login Error', error);
-        this.bootstrapService.error(error.error.description, error.error.code);
-        // this.bootstrapService.error(error.msg || 'Invalid login details!');
-      });
-    }
-  }
-// }
+   public async loginProcess() {
+     this.loading = true;
+     await this.loginService.loginProcess(this.credentials);
+     this.loading = false;
 
+   }
+  }

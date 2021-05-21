@@ -4,6 +4,9 @@ import {CacheService} from '../cacheService/cache.service';
 import {environment as ENV} from '../../../environments/environment';
 // import {IResponse} from '../../interfaces/iresponse';
 import swal from 'sweetalert2';
+import {UserService} from "../api-handlers/userService/user.service";
+import {NavigatorService} from "../navigatorService/navigator.service";
+import {BootstrapNotifyService} from "../bootstrap-notify/bootstrap-notify.service";
 // import {EventsService} from '../eventServices/event.service';
 // import {ScrollToConfigOptions, ScrollToService} from '@nicky-lenaers/ngx-scroll-to';
 // import {BootstrapNotifyService} from '../bootstrap-notify/bootstrap-notify.service';
@@ -176,4 +179,14 @@ export class UtilService {
       }
     });
   }
+
+  public initPassword(){
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  public closePassword(){
+    document.getElementById("overlay").style.display = "none";
+  }
+
+
 }
