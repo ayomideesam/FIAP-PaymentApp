@@ -15,6 +15,7 @@ export class UserService {
   constructor(private api: ApiService) {
 
   }
+
   auth(data: any): Observable<IResponse> {
     return this.api.postRequest('authenticate', 'login' , data).map((res: IResponse)  => {
       return res ;

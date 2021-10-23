@@ -15,6 +15,7 @@ declare const $: any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  fieldTextType: boolean;
   public credentials = {
     email: null,
     password: null
@@ -34,4 +35,7 @@ export class LoginComponent implements OnInit {
      this.loading = false;
 
    }
+  public toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
   }

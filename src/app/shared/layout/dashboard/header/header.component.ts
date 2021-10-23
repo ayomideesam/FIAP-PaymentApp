@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../../services/authService/auth.service';
 import {NavigatorService} from '../../../../services/navigatorService/navigator.service';
 import {EventsService} from '../../../../services/eventServices/event.service';
-import {closest} from "@angular/cdk/a11y/focus-trap/polyfill";
 
 @Component({
   selector: 'app-header',

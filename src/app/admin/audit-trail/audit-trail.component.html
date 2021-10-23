@@ -23,7 +23,7 @@
                         cellspacing="0" width="100%" style="width:100%">
                   <thead>
                   <tr class="">
-                    <th width="6%" class="disabled-sorting no-sort font-weight-bold">S/N</th>
+                    <th width="7%" class="disabled-sorting no-sort font-weight-bold">S/N</th>
                     <th class="font-weight-bold">ID</th>
                     <th width="15%" class="font-weight-bold">Email</th>
                     <th width="25%" class="font-weight-bold">Event</th>
@@ -45,7 +45,7 @@
                   </tfoot>
                   <tbody *ngIf="clients.length > 0">
                   <tr *ngFor="let client of clients; index as i">
-                    <td>{{ i }}</td>
+                    <td>{{ i+1 }}</td>
                     <!--<td>{{client?.id}}</td>-->
                     <td>{{client?.id}}</td>
                     <td>{{client?.email}}</td>

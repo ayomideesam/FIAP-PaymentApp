@@ -50,7 +50,7 @@ export class UtilService {
   public startDatatable(id) {
     setTimeout(() => {
       this.initDataTable(id);
-    }, 1000);
+    }, 10); // 1000
   }
 
   public neutralDatatable(id, res, destroy = 'destroy') {
@@ -73,7 +73,7 @@ export class UtilService {
         buttons,
         // order: [[1, 'asc']],
         language: {
-          search: '_INPUT_',
+          search: '_INPUT_ <i class=\'fas fa-search\' (click)="searchfield()" style="cursor: pointer">',
           searchPlaceholder: 'Search...',
           paginate: {
             previous: '<i class=\'fa fa-angle-left\'>',
@@ -91,8 +91,8 @@ export class UtilService {
           { responsivePriority: 2, targets: -1 }
           ],
         lengthMenu: [
-          [50, 100, 150, -1],
-          [50, 100, 150, 'All']
+          [10, 50, 100, 150, -1],
+          [10, 50, 100, 150, 'All']
         ],
         responsive,
       });

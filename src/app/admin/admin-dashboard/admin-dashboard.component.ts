@@ -15,6 +15,7 @@ export interface PeriodicElement {
   amount: number;
   date: string;
 }
+
 const ELEMENT_DATA: PeriodicElement[] = [
   {id: 1, bank: 'FIDELITY BANK', amount: 1.0079, date: '2021-04-21'},
   {id: 2, bank: 'ACCESS BANK', amount: 4.0026, date: '2021-04-21'},

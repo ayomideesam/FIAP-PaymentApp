@@ -25,6 +25,7 @@ export class BootstrapNotifyService {
     notify.update('type', type);
     notify.update('title', `&nbsp;&nbsp;<strong >${title}</strong>`);
     notify.update('message', `<p>&nbsp;${msg}</p>`);
+    notify.close();
   }
   public success(msg: string, position = 'right') {
     /*this.options.placement.align = position;
@@ -39,10 +40,11 @@ export class BootstrapNotifyService {
     },{
       type: 'pastel-success',
       delay: 5000,
-      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-      '<span data-notify="title">{1}</span>' +
-      '<span data-notify="message">{2}</span>' +
-      '</div>'
+      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} message-block" role="alert">' +
+      '<span data-notify="title" class="error-message">{1}</span>' +
+      '<span data-notify="message" class="error-message">{2}</span>' + '<button type="button" aria-hidden="true" class="close"' +
+      ' data-notify="dismiss" style="margin-top: 10px">&times;</button>'
+      + '</div>'
     });
   }
   public error(msg: string, position = 'right') {
@@ -58,10 +60,10 @@ export class BootstrapNotifyService {
     },{
       type: 'pastel-danger',
       delay: 5000,
-      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-      '<span data-notify="title">{1}</span>' +
-      '<span data-notify="message">{2}</span>' +
-      '</div>'
+      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} message-block" role="alert">' +
+      '<span data-notify="title" class="error-message">{1}</span>' +
+      '<span data-notify="message" class="error-message">{2}</span>' + '<button type="button" aria-hidden="true" class="close"' +
+      ' data-notify="dismiss" style="margin-top: 10px">&times;</button>' + '</div>'
     });
   }
   public info(msg: string, position = 'right') {
@@ -78,9 +80,10 @@ export class BootstrapNotifyService {
     },{
       type: 'pastel-info',
       delay: 5000,
-      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-      '<span data-notify="title">{1}</span>' +
-      '<span data-notify="message">{2}</span>' +
+      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} message-block" role="alert">' +
+      '<span data-notify="title" class="error-message">{1}</span>' +
+      '<span data-notify="message" class="error-message">{2}</span>' + '<button type="button" aria-hidden="true" class="close"' +
+      ' data-notify="dismiss" style="margin-top: 10px">&times;</button>' +
       '</div>'
     });
   }
@@ -99,9 +102,10 @@ export class BootstrapNotifyService {
     },{
       type: 'pastel-warning',
       delay: 5000,
-      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-      '<span data-notify="title">{1}</span>' +
-      '<span data-notify="message">{2}</span>' +
+      template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} message-block" role="alert">' +
+      '<span data-notify="title" class="error-message">{1}</span>' +
+      '<span data-notify="message" class="error-message">{2}</span>' + '<button type="button" aria-hidden="true" class="close"' +
+      ' data-notify="dismiss" style="margin-top: 10px">&times;</button>' +
       '</div>'
     });
 

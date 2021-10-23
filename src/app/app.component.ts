@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ElementRef, ViewChild} from '@angular/core';
 declare const $: any;
 
 @Component({
   selector: 'app-root',
-  template: `<app-notify-new></app-notify-new><router-outlet></router-outlet>`,
+  template: `<div #topScrollAnchor></div><app-notify-new></app-notify-new><router-outlet (activate)="onNavigate($event)"></router-outlet>`,
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 
@@ -18,6 +18,12 @@ export class AppComponent implements OnInit {
       'text-shadow: 1px 1px 5px rgb(249, 162, 34);' +
       'filter: dropshadow(color=rgb(249, 162, 34), offx=1, offy=1);';
     setTimeout(console.info.bind(console, '%cUpperlink Fiap Portal', cssRule), 0);
-
   }
+
+  @ViewChild('topScrollAnchor') topScroll: ElementRef;
+
+  onNavigate(event): any {
+    this.topScroll.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
 }

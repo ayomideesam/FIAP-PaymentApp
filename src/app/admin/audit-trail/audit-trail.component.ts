@@ -6,6 +6,7 @@ import {UtilService} from "../../services/utilService/util.service";
 import {CacheService} from "../../services/cacheService/cache.service";
 import {EventsService} from "../../services/eventServices/event.service";
 import {UserService} from "../../services/api-handlers/userService/user.service";
+import {interval} from "rxjs/internal/observable/interval";
 
 @Component({
   selector: 'app-audit-trail',
@@ -14,6 +15,7 @@ import {UserService} from "../../services/api-handlers/userService/user.service"
 })
 export class AuditTrailComponent implements OnInit {
   public loadingTable = false;
+  public interval = 1;
   public formPage = false;
   public loading = false;
   public clients: any = [];
@@ -41,6 +43,10 @@ export class AuditTrailComponent implements OnInit {
       console.log('token is here');
       this.router.navigate(['/']);
     }
+
+    interval(1000 * 60 * this.interval).subscribe((val) => {
+      this.getAuditLog();
+    });
   }
 
   ngOnInit(): void {
@@ -48,12 +54,13 @@ export class AuditTrailComponent implements OnInit {
     this.getAuditLog();
   }
 
+
   public getAuditLog(): void {
     this.loadingTable  = true;
     this.userService.getAuditLog().subscribe((res: any) => {
       // this.clients =  res.data.data;
       this.clients =  res.content;
-      this.cacheService.setStorage(ENV.AUDITCOUNT, res.count);
+      // this.cacheService.setStorage(ENV.AUDITCOUNT, res.count);
       // console.log('Audit Response', res);
       this.loadingTable = false;
       this.utilService.startDatatable('showAudit');
@@ -63,6 +70,7 @@ export class AuditTrailComponent implements OnInit {
       this.loadingTable = false;
     });
   }
+
 
   public resetForm() {
     this.toggleView();

@@ -2,7 +2,7 @@
 <!-- End Navbar -->
 <div class="wrapper wrapper-full-page">
   <div class="page-header login-page header-filter" filter-color="black" style="background-image:
-  url('../../assets/images/sleeksolutions.jpg'); background-size: cover; background-position: top center;">
+  url('../../../assets/images/sleeksolutions.jpg'); background-size: cover; background-position: top center;">
     <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
     <div class="container end">
       <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
@@ -38,7 +38,26 @@
                         <i class="material-icons">lock_outline</i>
                       </span>
                     </div>
-                    <input type="password" class="form-control " placeholder="Password" #password="ngModel" id="password" [(ngModel)]="credentials.password" [ngModelOptions]="{standalone: true}" required>
+                    <!--<input type="password" class="form-control " placeholder="Password" #password="ngModel" id="password" [(ngModel)]="credentials.password" [ngModelOptions]="{standalone: true}" required>-->
+                    <input [type]="fieldTextType ? 'text' : 'password'"
+                           class="form-control" maxlength="15"
+                           placeholder="Password"
+                           #password="ngModel"
+                           id="password" [(ngModel)]="credentials.password"
+                           [ngModelOptions]="{standalone: true}" required
+                           autocomplete="false">
+                    <div class="input-group-append">
+                      <i class="fa input-group-text"
+                         [ngClass]="{
+                              'fa-eye-slash': !fieldTextType,
+                              'fa-eye': fieldTextType
+                            }"
+                         (click)="toggleFieldTextType()"
+                         style="
+                            border-bottom: 1px solid #ccc;
+                            height: 44px;">
+                      </i>
+                    </div>
                     <!-- minlength="8"-->
                   </div>
                 </div>
@@ -52,10 +71,10 @@
               </div>
 
               <div class="text-left ForgotPassClass" style="font-size: 13px;">
-                <p class="px-2 text-center" style="padding: 10px 15px; border-radius: 8px; border: 1px solid #ff9800;
+                <p class="px-2 text-center" style="padding: 8px 15px; border-radius: 8px; border: 1px solid #ff9800;
                 box-shadow:
-                 0 2px 2px 0 rgb(255 152 0 / 14%), 0 3px 1px -2px rgb(255 152 0 / 20%), 0 1px 5px 0 rgb(255 152 0 / 12%); margin:
-                12px 61% 6px 5px;">
+                 0 2px 2px 0 rgb(255 152 0 / 14%), 0 3px 1px -2px rgb(255 152 0 / 20%), 0 1px 5px 0 rgb(255 152 0 /
+                 12%); margin: 10px 7.7em;">
                   <a href="javascript:void(0)" [routerLink]="['/forgot-password']" class="text-rose">
                     Forgot Password?
                   </a>
